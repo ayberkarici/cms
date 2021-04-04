@@ -226,6 +226,11 @@ class Product extends CI_Controller {
 			)
 		);
 
+		$viewData->item_images = $this->product_image_model->get_all(
+			array(
+				"product_id" => $id
+			)
+		);
 
 		$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
 	}
@@ -249,7 +254,7 @@ class Product extends CI_Controller {
 					"rank" => 0,
 					"isActive" => 1,
 					"isCover" => 1,
-					"createdAt" => date("Y-m-d H:i:s"),
+					"createdAt" => date("Y-m-d H:i:s")
 				)
 			);
 		} else {
