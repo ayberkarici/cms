@@ -3,45 +3,62 @@ $(document).ready(function () {
     $(".sortable").sortable();
 
     $(".remove-btn").click(function () {
-        const $data_url = $(this).data("url");
-        const $data_itemName = $(this).data("name");
 
-        Swal.fire({
+        var $data_url = $(this).data("url");
+
+        swal({
             title: 'Emin misiniz?',
-            text: $data_itemName +" adlı ürünü silmek üzeresiniz!",
-            icon: 'warning',
+            text: "Bu işlemi geri alamayacaksınız!",
+            type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Evet, sil!',
-            cancelButtonText: 'Hayır'
-          }).then((result) => {
-            if (result.isConfirmed) {
+            confirmButtonText: 'Evet, Sil!',
+            cancelButtonText : "Hayır"
+        }).then(function (result) {
+            if (result.value) {
 
                 window.location.href = $data_url;
-                /*Swal.fire(
-                  'Deleted!',
-                  'Your file has been deleted.',
-                  'success'
-                )*/
             }
-          })
-    });
-      
-    $(".isActive").change(function () {
-        const $data = $(this).prop("checked");
-        const $data_url = $(this).data("url");
+        });
 
-        if(typeof $data !== undefined && typeof $data_url !== undefined) {
-            $.post($data_url, {data : $data}, function () {});
-        }
     })
 
-    $(".sortable").on("sortupdate", function (event, ui) {
-      const $data   = $(this).sortable("serialize");
-      const $data_url = $(this).data("url");
+    $(".isActive").change(function(){
 
-      $.post($data_url, {data : $data}, function (response) {});
+        var $data = $(this).prop("checked");
+        var $data_url = $(this).data("url");
+
+        if(typeof $data !== "undefined" && typeof $data_url !== "undefined"){
+
+            $.post($data_url, { data : $data}, function (response) {
+
+            });
+
+        }
+
+    })
+
+    $(".sortable").on("sortupdate", function(event, ui){
+
+        var $data = $(this).sortable("serialize");
+        var $data_url = $(this).data("url");
+
+        $.post($data_url, {data : $data}, function(response){})
+
+    })
+
+    var uploadSection = Dropzone.forElement("#dropzone");
+
+    uploadSection.on("complete", function(file){
+
+        var $data_url = $("#dropzone").data("url");
+
+        $.post($data_url, {}, function(response){
+
+            $(".image_list_container").html(response);
+
+        });
 
     })
 

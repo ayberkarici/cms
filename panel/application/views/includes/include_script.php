@@ -19,5 +19,5 @@
 	<script src="<?php echo base_url('assets'); ?>/assets/js/fullcalendar.js"></script>    
 	<script src="<?php echo base_url('assets'); ?>/assets/js/sweetalert2.all.js"></script>    
 
-	<script src="<?php echo base_url('assets'); ?>/assets/js/custom.js"></script>    
+	<!--<script src="<?php echo base_url('assets'); ?>/assets/js/custom.js"></script>-->    
 
