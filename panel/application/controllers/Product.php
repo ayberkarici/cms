@@ -20,7 +20,7 @@ class Product extends CI_Controller {
 
 
 		/* Tablodan verilerin getirilmesi  */
-		$items = $this->product_model->get_all();
+		$items = $this->product_model->get_all(array(),"rank ASC");
 		
 		/* viewe gönderilecek değişkenlerin set edilmesi */
         $viewData->viewFolder = $this->viewFolder;
@@ -34,13 +34,8 @@ class Product extends CI_Controller {
 	{
 		$viewData = new stdClass();
 		
-		/* Tablodan verilerin getirilmesi  */
-		//$items = $this->product_model->get_all();
-				
-		/* viewe gönderilecek değişkenlerin set edilmesi */
 		$viewData->viewFolder = $this->viewFolder;
         $viewData->subViewFolder = "add";
-		//$viewData->items = $items;
 
 		$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
 	}
@@ -91,4 +86,140 @@ class Product extends CI_Controller {
 
 	}
 
+	public function update_form($id)
+	{
+		$viewData = new stdClass();
+
+		$item = $this->product_model->get(
+			array (
+				"id" => $id
+			)
+		);
+
+		$viewData->viewFolder = $this->viewFolder;
+		$viewData->subViewFolder = "update";
+		$viewData->item = $item; 
+
+		$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
+	}
+
+	public function update($id)
+	{
+		$this->load->library("form_validation");
+
+		// Kurallar
+		$this->form_validation->set_rules("title","Başlık","required|trim");
+
+		$this->form_validation->set_message(
+			array(
+				"required" => "<b>{field}</b> alanı doldurulmalıdır" 
+			)
+		);
+
+		// Form validation çalıştırılır
+		// TRUE - FALSE
+		$validate = $this->form_validation->run();
+
+		if ($validate) {
+			$update = $this->product_model->update(
+				array(
+					"id" => $id
+				),
+				array(
+					"title"			=> $this->input->post("title"),
+					"description"	=> $this->input->post("description"),
+					"url"			=> convertToSEO($this->input->post("title")),
+				)
+			);
+			
+			// TODO alert sistemi eklemek
+			if ($update) {
+				redirect("product");
+			} else {
+				redirect("product");				
+			}
+		} else {
+			$viewData = new stdClass();
+
+			// Tablodan verilerin getirilmesi
+			$item = $this->product_model->get(
+				array(
+					"id" => $id
+				)
+			);
+
+			$viewData->viewFolder = $this->viewFolder;
+			$viewData->subViewFolder = "update";
+			$viewData->form_error = true;
+			$viewData->item = $item;
+	
+			$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
+		}
+
+	}
+
+	public function delete($id)
+	{	
+		$delete = $this->product_model->delete(
+			array(
+				"id" => $id
+			)
+		);
+
+		//TODO alert sistemi eklenecek
+		if($delete) {
+			redirect("product");
+		} else {
+			redirect("product");
+		}
+	}
+
+	public function isActiveSetter($id)
+	{
+		if($id) {
+			$isActive = ($this->input->post('data') === "true") ? 1 : 0 ;
+
+			$this->product_model->update(
+				array(
+					"id" => $id
+				),
+				array(
+					"isActive" => $isActive
+				)
+			);
+		}
+	}
+
+	public function rankSetter()
+	{
+		$data = $this->input->post("data");
+
+		parse_str($data, $order);
+
+		$items = $order['ord'];
+
+		foreach ($items as $rank => $id) {
+
+			$this->product_model->update(
+				array(
+					"id" 		=> $id,
+					"rank !=" 	=> $rank
+				),
+				array(
+					"rank" 		=> $rank
+				)
+			);
+		};
+
+	}
+
+	public function image_form($id)
+	{
+		$viewData = new stdClass();
+		
+		$viewData->viewFolder = $this->viewFolder;
+        $viewData->subViewFolder = "image";
+
+		$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
+	}
 }

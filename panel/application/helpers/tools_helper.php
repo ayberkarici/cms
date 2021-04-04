@@ -1,5 +1,5 @@
 <?php 
-
+// autoload'dan helperin alt tireden önceki kısmını yazarak tanımladık  
 function convertToSEO($text)
 {   
     $turkce = array("ç", "Ç", "ğ", "Ğ", "ü", "Ü", "ö", "Ö", "ı", "İ", "ş", "Ş", ".", ",", "!", "'", "\"", " ", "?", "*", "_", "|", "=", "(", ")", "[", "]", "{", "}");

@@ -1,5 +1,5 @@
 <div class="row">
-<div class="col-md-12">
+<div class="col-md-12 col-sm-12 col-xs-12">
     <h4 class="m-b-lg ">
         <span>Ürün Listesi</span>
         <a href="<?php echo base_url('product/new_form'); ?>" class=" btn btn-primary btn-outline btn-info btn-xs pull-right"><i class="fa fa-plus"></i> Yeni Ekle</a>
@@ -17,37 +17,53 @@
         <table class="table table-striped table-hover">
 
         <thead>
+            <th><i class="fa fa-reorder"></i></th>
             <th>#id</th>
-            <th>url</th>
             <th>Başlık</th>
+            <th>url</th>
             <th>Açıklama</th>
             <th>Durumu</th>
             <th>İşlem</th>
         </thead>
-
-        <tbody>
+        <tbody class="sortable" data-url="<?php echo base_url("product/rankSetter"); ?>">
             <?php foreach ($items as $item):?>
-            <tr>
+            <tr id="ord-<?php echo $item->id; ?>">
+                <td><i class="fa fa-reorder"></i></td>
                 <td>#<?php echo $item->id; ?></td>
-                <td><?php echo $item->url; ?></td>
                 <td><?php echo $item->title; ?></td>
+                <td><?php echo $item->url; ?></td>
                 <td><?php echo $item->description; ?></td>
                 <td>							
 						<input 
+                            data-url="<?php echo base_url("product/isActiveSetter/$item->id"); ?>"
                             type="checkbox" 
-                            class="btn-xs" 
+                            class="btn-xs isActive" 
                             data-switchery 
                             data-color="#10c469" 
                             <?php echo ($item->isActive) ? "checked" : "" ?>
+                            data-size="small"
                         />
                 </td>
                 <td>
-                    <button type="button" class="btn btn-xs btn-danger">
+                    <button  
+                        type="button" 
+                        class="btn btn-xs btn-danger remove-btn" 
+                        data-url="<?php echo base_url("product/delete/$item->id") ?>"
+                        data-name="<?php echo $item->title ?>">
                         <i class="fa fa-trash-o"></i> Sil
                     </button>
-                    <button type="button" class="btn btn-xs btn-warning">
+                    <a 
+                        type="button" 
+                        class="btn btn-xs btn-warning " 
+                        href="<?php echo base_url("product/update_form/". $item->id) ?>">
                         <i class="fa fa-pencil-square-o"></i> Düzenle
-                    </button>
+                    </a>
+                    <a 
+                        type="button" 
+                        class="btn btn-xs btn-dark" 
+                        href="<?php echo base_url("product/image_form/". $item->id) ?>">
+                        <i class="fa fa-image"></i> Resimler
+                    </a>
                 </td>
             </tr>
             <?php endforeach; ?>
