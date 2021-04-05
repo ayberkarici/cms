@@ -14,7 +14,7 @@
 
         <?php } else {  ?>
 
-        <table class="table table-striped table-hover">
+        <table class="table table-striped table-hover content-container">
 
         <thead>
             <th><i class="fa fa-reorder"></i></th>
@@ -45,6 +45,19 @@
                         />
                 </td>
                 <td>
+
+                    <a 
+                        type="button" 
+                        class="btn btn-xs btn-dark" 
+                        href="<?php echo base_url("product/image_form/". $item->id) ?>">
+                        <i class="fa fa-image"></i> Resimler
+                    </a>
+                    <a 
+                        type="button" 
+                        class="btn btn-xs btn-warning " 
+                        href="<?php echo base_url("product/update_form/". $item->id) ?>">
+                        <i class="fa fa-pencil-square-o"></i> Düzenle
+                    </a>
                     <button  
                         type="button" 
                         class="btn btn-xs btn-danger remove-btn" 
@@ -52,18 +65,7 @@
                         data-name="<?php echo $item->title ?>">
                         <i class="fa fa-trash-o"></i> Sil
                     </button>
-                    <a 
-                        type="button" 
-                        class="btn btn-xs btn-warning " 
-                        href="<?php echo base_url("product/update_form/". $item->id) ?>">
-                        <i class="fa fa-pencil-square-o"></i> Düzenle
-                    </a>
-                    <a 
-                        type="button" 
-                        class="btn btn-xs btn-dark" 
-                        href="<?php echo base_url("product/image_form/". $item->id) ?>">
-                        <i class="fa fa-image"></i> Resimler
-                    </a>
+
                 </td>
             </tr>
             <?php endforeach; ?>
