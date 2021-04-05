@@ -70,11 +70,26 @@ class Product extends CI_Controller {
 				)
 			);
 			
-			if ($insert) {
-				redirect("product");
+			if($insert) {
+				$alert = array(
+					'title' => "İşlem Başarılı!",
+					'type' 	=> "success",
+					'text'	=> "Ürün başarıyla veritabanına kaydedildi"
+				);
+				
 			} else {
-				redirect("product");				
-			}
+	
+				$alert = array(
+					'title' => "İşlem Başarısız.",
+					'type' 	=> "error",
+					'text'	=> "Ürün kaydedilemedi"
+				);
+	
+			};
+			
+			$this->session->set_flashdata("alert", $alert);
+			
+			redirect("product");			
 		} else {
 			$viewData = new stdClass();
 
@@ -134,11 +149,27 @@ class Product extends CI_Controller {
 			);
 			
 			// TODO alert sistemi eklemek
-			if ($update) {
-				redirect("product");
+			if($update) {
+
+				$alert = array(
+					'title' => "İşlem Başarılı!",
+					'type' 	=> "success",
+					'text'	=> "Ürün başarıyla değiştirildi"
+				);
+				
 			} else {
-				redirect("product");				
-			}
+	
+				$alert = array(
+					'title' => "İşlem Başarısız.",
+					'type' 	=> "error",
+					'text'	=> "Ürün değiştirilemedi"
+				);
+	
+			};
+			
+			$this->session->set_flashdata("alert", $alert);
+			
+			redirect("product");				
 		} else {
 			$viewData = new stdClass();
 
@@ -173,6 +204,7 @@ class Product extends CI_Controller {
 			)
 		);
 
+
 		//TODO alert sistemi eklenecek
 		if($delete) {
 			foreach ($imagesDelete as $image) {
@@ -184,10 +216,27 @@ class Product extends CI_Controller {
 					)
 				);
 			}
-			redirect("product");
+
+			$alert = array(
+				'title' => "İşlem Başarılı!",
+				'type' 	=> "success",
+				'text'	=> "Ürün başarıyla veritabanından silindi"
+			);
+			
 		} else {
-			redirect("product");
-		}
+
+			$alert = array(
+				'title' => "İşlem Başarısız.",
+				'type' 	=> "error",
+				'text'	=> "Ürün silinemedi"
+			);
+
+		};
+		
+		$this->session->set_flashdata("alert", $alert);
+		
+		redirect(base_url("product"));
+		
 	}
 	public function imageDelete($id, $parent_id)
 	{	
@@ -206,11 +255,26 @@ class Product extends CI_Controller {
 		//TODO alert sistemi eklenecek
 		if($delete) {
 			unlink("uploads/$this->viewFolder/$file_name->img_url");
-
-			redirect(base_url("product/image_form/$parent_id"));
+				
+			$alert = array(
+				'title' => "İşlem Başarılı!",
+				'type' 	=> "success",
+				'text'	=> "Ürün başarıyla veritabanından silindi"
+			);
+			
 		} else {
-			redirect(base_url("product/image_form/$parent_id"));
-		}
+
+			$alert = array(
+				'title' => "İşlem Başarısız.",
+				'type' 	=> "error",
+				'text'	=> "Ürün silinemedi"
+			);
+
+		};
+		
+		$this->session->set_flashdata("alert", $alert);
+		
+		redirect(base_url("product/image_form/$parent_id"));
 	}
 
 	public function isActiveSetter($id)
@@ -379,6 +443,7 @@ class Product extends CI_Controller {
 					"createdAt" => date("Y-m-d H:i:s")
 				)
 			);
+			
 		} else {
 			echo "İşlem başarısız";
 		}

@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+
     $(".sortable").sortable();
 
     $(".content-container, .image_list_container").on("click", ".remove-btn", function(){
@@ -28,6 +29,7 @@ $(document).ready(function () {
 
         var $data = $(this).prop("checked");
         var $data_url = $(this).data("url");
+        var $data_id = $(this).data("id");
 
         if(typeof $data !== "undefined" && typeof $data_url !== "undefined"){
 
@@ -36,6 +38,12 @@ $(document).ready(function () {
             });
 
             $(".sortable").sortable();
+
+            iziToast.success({
+                title: 'İşlem Başarılı',
+                message: $data_id+' No\'lu görselin durumu değiştirildi',
+                position:'bottomRight'
+            });
 
         }
 
@@ -67,6 +75,12 @@ $(document).ready(function () {
 
                 $(".sortable").sortable();
 
+                iziToast.success({
+                    title: 'İşlem Başarılı',
+                    message: 'Kapak fotoğrafı değiştirildi',
+                    position:'bottomRight'
+                });
+
             });
 
 
@@ -80,7 +94,11 @@ $(document).ready(function () {
         const $data_url = $(this).data("url");
 
         $.post($data_url, {data : $data}, function(response){
-
+            iziToast.success({
+                title: 'İşlem Başarılı',
+                message: 'Sıralama değiştirildi',
+                position:'bottomRight'
+            });
         })
     })
 
@@ -108,6 +126,12 @@ $(document).ready(function () {
 			});
 
             $(".sortable").sortable();
+
+            iziToast.info({
+                title: 'Bilgi!',
+                message: 'Yeni bir görsel eklendi',
+                position:'bottomRight'
+            });
             
         });
 

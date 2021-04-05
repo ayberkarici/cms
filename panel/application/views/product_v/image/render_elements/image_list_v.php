@@ -30,6 +30,7 @@
                     <td class="w100 text-center order-status">
                         <input
                             data-url="<?php echo base_url("product/imageIsActiveSetter/$image->id"); ?>"
+                            data-id="<?php echo $image->id ?>"
                             class="btn-xs isActive"
                             type="checkbox"
                             data-switchery
