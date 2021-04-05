@@ -14,26 +14,26 @@
 
         <?php } else {  ?>
 
-        <table class="table table-striped table-hover content-container">
+        <table class="table table-bordered table-striped table-hover content-container">
 
         <thead>
-            <th><i class="fa fa-reorder"></i></th>
-            <th>#id</th>
+            <th class="order"><i class="fa fa-reorder"></i></th>
+            <th class="order">#id</th>
             <th>Başlık</th>
             <th>url</th>
             <th>Açıklama</th>
-            <th>Durumu</th>
+            <th class="order-status">Durumu</th>
             <th>İşlem</th>
         </thead>
         <tbody class="sortable" data-url="<?php echo base_url("product/rankSetter"); ?>">
             <?php foreach ($items as $item):?>
             <tr id="ord-<?php echo $item->id; ?>">
-                <td><i class="fa fa-reorder"></i></td>
-                <td>#<?php echo $item->id; ?></td>
+                <td class="order"><i class="fa fa-reorder"></i></td>
+                <td class="order center">#<?php echo $item->id; ?></td>
                 <td><?php echo $item->title; ?></td>
                 <td><?php echo $item->url; ?></td>
                 <td><?php echo $item->description; ?></td>
-                <td>							
+                <td class="order-status">							
 						<input 
                             data-url="<?php echo base_url("product/isActiveSetter/$item->id"); ?>"
                             type="checkbox" 
@@ -44,8 +44,7 @@
                             data-size="small"
                         />
                 </td>
-                <td>
-
+                <td class="order-progress">
                     <a 
                         type="button" 
                         class="btn btn-xs btn-dark" 
@@ -65,7 +64,7 @@
                         data-name="<?php echo $item->title ?>">
                         <i class="fa fa-trash-o"></i> Sil
                     </button>
-
+                
                 </td>
             </tr>
             <?php endforeach; ?>

@@ -4,3 +4,41 @@
     color: #ff5b5b ;
     font-style: italic;
 }
+
+td{
+    vertical-align: middle !important;
+}
+
+td img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th{
+    vertical-align: middle !important;
+    text-align: center;
+}
+
+.order{
+    vertical-align: middle !important;
+    width: 50px !important;
+    text-align: center;
+    padding: 0 auto !important;
+}
+
+.order-status{
+    vertical-align: middle !important;
+    width: 60px !important;
+    text-align: center;
+}
+
+.order-progress{
+    vertical-align: middle !important;
+    width: fit-content !important;
+    text-align: center;
+}
+
+.sortable {
+    cursor: move;
+}

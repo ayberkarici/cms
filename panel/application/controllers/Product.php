@@ -161,6 +161,12 @@ class Product extends CI_Controller {
 
 	public function delete($id)
 	{	
+		$imagesDelete = $this->product_image_model->get_all(
+			array(
+				"product_id" => $id
+			)
+		);
+
 		$delete = $this->product_model->delete(
 			array(
 				"id" => $id
@@ -169,6 +175,15 @@ class Product extends CI_Controller {
 
 		//TODO alert sistemi eklenecek
 		if($delete) {
+			foreach ($imagesDelete as $image) {
+				unlink("uploads/$this->viewFolder/$image->img_url");
+				
+				$this->product_image_model->delete(
+					array(
+						"product_id" => $id
+					)
+				);
+			}
 			redirect("product");
 		} else {
 			redirect("product");
@@ -176,7 +191,6 @@ class Product extends CI_Controller {
 	}
 	public function imageDelete($id, $parent_id)
 	{	
-
 		$file_name = $this->product_image_model->get(
 			array(
 				"id" => $id
@@ -342,7 +356,6 @@ class Product extends CI_Controller {
 
 	public function image_upload($id)
 	{
-
 		$file_name = convertToSEO(pathinfo($_FILES["file"]["name"], PATHINFO_FILENAME)).".".pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION);
 
 		$config['allowed_types'] = "jpg|jpeg|png";

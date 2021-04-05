@@ -43,8 +43,8 @@ $(document).ready(function () {
 
     $(".image_list_container").on("change", ".isCover" , function(){
 
-        var $data = $(this).prop("checked");
-        var $data_url = $(this).data("url");
+        const $data = $(this).prop("checked");
+        const $data_url = $(this).data("url");
 
         if(typeof $data !== "undefined" && typeof $data_url !== "undefined"){
 
@@ -53,7 +53,7 @@ $(document).ready(function () {
                 $(".image_list_container").html(response);
 
                 $('[data-switchery]').each(function(){
-                    var $this = $(this),
+                    const $this = $(this),
                         color = $this.attr('data-color') || '#188ae2',
                         jackColor = $this.attr('data-jackColor') || '#ffffff',
                         size = $this.attr('data-size') || 'default'
@@ -76,14 +76,15 @@ $(document).ready(function () {
 
     $(".content-container, .image_list_container").on("sortupdate", ".sortable" , function(event, ui){
 
-        var $data = $(this).sortable("serialize");
-        var $data_url = $(this).data("url");
+        const $data = $(this).sortable("serialize");
+        const $data_url = $(this).data("url");
 
-        $.post($data_url, {data : $data}, function(response){})
+        $.post($data_url, {data : $data}, function(response){
 
+        })
     })
 
-    var uploadSection = Dropzone.forElement("#dropzone");
+    const uploadSection = Dropzone.forElement("#dropzone");
 
     uploadSection.on("complete", function(file){
 
@@ -106,6 +107,8 @@ $(document).ready(function () {
 				});
 			});
 
+            $(".sortable").sortable();
+            
         });
 
     })
