@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Product extends CI_Controller {
+class News extends CI_Controller {
 
 	public $viewFolder = "";
 
@@ -9,10 +9,9 @@ class Product extends CI_Controller {
 	{
 		parent:: __construct();
 
-		$this->viewFolder = "product_v";
+		$this->viewFolder = "news_v";
 
-		$this->load->model("product_model");
-		$this->load->model("product_image_model");
+		$this->load->model("news_model");
 	}
 
 	public function index()
@@ -21,7 +20,7 @@ class Product extends CI_Controller {
 
 
 		/* Tablodan verilerin getirilmesi  */
-		$items = $this->product_model->get_all(array(),"rank ASC");
+		$items = $this->news_model->get_all(array(),"rank ASC");
 		
 		/* viewe gönderilecek değişkenlerin set edilmesi */
         $viewData->viewFolder = $this->viewFolder;
@@ -46,6 +45,33 @@ class Product extends CI_Controller {
 		$this->load->library("form_validation");
 
 		// Kurallar
+		$news_type = $this->input->post("news_type");
+		
+		if ($news_type == "image") {
+			if($_FILES['img_url']['name'] == "") {
+				$alert = array(
+					'title' => "İşlem Başarısız.",
+					'type' 	=> "error",
+					'text'	=> "Lütfen bir görsel seçiniz"
+				);
+				
+				$this->session->set_flashdata("alert", $alert);
+				$this->form_validation->set_rules("img_url","image URL","required");
+			};
+
+		} else if ($news_type == "video") {
+			$this->form_validation->set_rules("video_url","video URL","required|trim");
+			
+
+			$alert = array(
+				'title' => "İşlem Başarısız.",
+				'type' 	=> "error",
+				'text'	=> "Lütfen bir video bağlantısı yapıştırın"
+			);
+			
+			$this->session->set_flashdata("alert", $alert);
+		}
+
 		$this->form_validation->set_rules("title","Başlık","required|trim");
 
 		$this->form_validation->set_message(
@@ -55,20 +81,64 @@ class Product extends CI_Controller {
 		);
 
 		// Form validation çalıştırılır
-		// TRUE - FALSE
 		$validate = $this->form_validation->run();
 
 		if ($validate) {
-			$insert = $this->product_model->add(
-				array(
+			// Upload süreci
+			if($news_type == "image") {
+				$file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)).".".pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
+
+				$config['allowed_types'] = "jpg|jpeg|png";
+				$config['upload_path'] = "uploads/$this->viewFolder/";
+				$config['file_name'] = $file_name;
+		
+				$this->load->library("upload", $config);
+		
+				$upload = $this->upload->do_upload("img_url");
+		
+				if($upload) {
+					$uploaded_file = $this->upload->data("file_name"); 
+					
+					$data = array(
+						"title"			=> $this->input->post("title"),
+						"description"	=> $this->input->post("description"),
+						"url"			=> convertToSEO($this->input->post("title")),
+						"news_type"		=> $news_type,
+						"img_url"		=> $uploaded_file,
+						"video_url"		=> "#",
+						"rank"			=> 0,
+						"isActive"		=> 1,
+						"createdAt"		=> date("Y-m-d H:i:s")
+					);
+			 	} else {
+					$alert = array(
+						'title' => "İşlem Başarısız.",
+						'type' 	=> "error",
+						'text'	=> "Görsel yüklenirken bir hata oluştu"
+					);
+				
+					$this->session->set_flashdata("alert", $alert);
+					
+					redirect(base_url("news/new_form"));
+	
+					die();
+				}
+				
+			} else if ($news_type == "video" ) {
+				$data = array(
 					"title"			=> $this->input->post("title"),
 					"description"	=> $this->input->post("description"),
 					"url"			=> convertToSEO($this->input->post("title")),
+					"news_type"		=> $news_type,
+					"img_url"		=> "#",
+					"video_url"		=> $this->input->post("video_url"),
 					"rank"			=> 0,
 					"isActive"		=> 1,
 					"createdAt"		=> date("Y-m-d H:i:s")
-				)
-			);
+				);
+			}
+
+			$insert = $this->news_model->add($data);
 			
 			if($insert) {
 				$alert = array(
@@ -76,26 +146,24 @@ class Product extends CI_Controller {
 					'type' 	=> "success",
 					'text'	=> "Ürün başarıyla veritabanına kaydedildi"
 				);
-				
 			} else {
-	
 				$alert = array(
 					'title' => "İşlem Başarısız.",
 					'type' 	=> "error",
 					'text'	=> "Ürün kaydedilemedi"
 				);
-	
 			};
 			
 			$this->session->set_flashdata("alert", $alert);
 			
-			redirect(base_url("product"));			
+			redirect(base_url("news"));			
 		} else {
 			$viewData = new stdClass();
 
 			$viewData->viewFolder = $this->viewFolder;
 			$viewData->subViewFolder = "add";
 			$viewData->form_error = true;
+			$viewData->news_type = $news_type;
 	
 			$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
 		}
@@ -106,7 +174,7 @@ class Product extends CI_Controller {
 	{
 		$viewData = new stdClass();
 
-		$item = $this->product_model->get(
+		$item = $this->news_model->get(
 			array (
 				"id" => $id
 			)
@@ -137,7 +205,7 @@ class Product extends CI_Controller {
 		$validate = $this->form_validation->run();
 
 		if ($validate) {
-			$update = $this->product_model->update(
+			$update = $this->news_model->update(
 				array(
 					"id" => $id
 				),
@@ -169,12 +237,12 @@ class Product extends CI_Controller {
 			
 			$this->session->set_flashdata("alert", $alert);
 			
-			redirect(base_url("product"));				
+			redirect("product");				
 		} else {
 			$viewData = new stdClass();
 
 			// Tablodan verilerin getirilmesi
-			$item = $this->product_model->get(
+			$item = $this->news_model->get(
 				array(
 					"id" => $id
 				)
@@ -198,7 +266,7 @@ class Product extends CI_Controller {
 			)
 		);
 
-		$delete = $this->product_model->delete(
+		$delete = $this->news_model->delete(
 			array(
 				"id" => $id
 			)
@@ -282,7 +350,7 @@ class Product extends CI_Controller {
 		if($id) {
 			$isActive = ($this->input->post('data') === "true") ? 1 : 0 ;
 
-			$this->product_model->update(
+			$this->news_model->update(
 				array(
 					"id" => $id
 				),
@@ -362,7 +430,7 @@ class Product extends CI_Controller {
 
 		foreach ($items as $rank => $id) {
 
-			$this->product_model->update(
+			$this->news_model->update(
 				array(
 					"id" 		=> $id,
 					"rank !=" 	=> $rank
@@ -403,7 +471,7 @@ class Product extends CI_Controller {
 		
 		$viewData->viewFolder = $this->viewFolder;
         $viewData->subViewFolder = "image";
-        $viewData->item = $this->product_model->get(
+        $viewData->item = $this->news_model->get(
 			array(
 				"id" => $id
 			)
