@@ -20,7 +20,7 @@
             <th class="order"><i class="fa fa-reorder"></i></th>
             <th class="order">#id</th>
             <th>Başlık</th>
-            <th>url</th>
+            <th class="w134">Url</th>
             <th>Açıklama</th>
             <th class="order-status">Durumu</th>
             <th>İşlem</th>

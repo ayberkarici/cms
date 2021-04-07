@@ -10,8 +10,6 @@ $(document).ready(function () {
             $(".video_url_container").fadeIn();
             
         }
-
-
     });
 
 })

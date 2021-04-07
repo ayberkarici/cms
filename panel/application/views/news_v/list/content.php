@@ -20,8 +20,8 @@
             <th class="order"><i class="fa fa-reorder"></i></th>
             <th class="order">#id</th>
             <th>Başlık</th>
-            <th>url</th>
-            <th>Açıklama</th>
+            <th class="w134">Url</th>
+            <!--<th>Açıklama</th>-->
             <th>Haber Türü</th>
             <th>Görsel</th>
             <th class="order-status">Durumu</th>
@@ -34,12 +34,35 @@
                 <td class="order center">#<?php echo $item->id; ?></td>
                 <td><?php echo $item->title; ?></td>
                 <td><?php echo $item->url; ?></td>
-                <td><?php echo $item->description; ?></td>
+                <!--<td><?php echo $item->description; ?></td>-->
                 <td><?php echo $item->news_type; ?></td>
-                <td>[Görsel gelecek]}</td>
+                <td>
+                    <?php if($item->news_type == "image") { ?>
+                        <img 
+                            width="100"
+                            src="<?php echo base_url("uploads/$viewFolder/$item->img_url"); ?>" 
+                            alt="" 
+                            srcset=""
+                        >
+
+                    <?php } else if ($item->news_type == "video") { ?>
+                        <iframe 
+                            width="150"
+                            height="100" 
+                            src="<?php echo $item->video_url; ?>" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen></iframe>
+
+                    <?php } ?>
+
+                
+                </td>
                 <td class="order-status">							
 						<input 
                             data-url="<?php echo base_url("news/isActiveSetter/$item->id"); ?>"
+                            data-id="<?php echo $item->id; ?>"
                             type="checkbox" 
                             class="btn-xs isActive" 
                             data-switchery 

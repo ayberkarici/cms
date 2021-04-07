@@ -24,7 +24,7 @@
                         </textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-primary btn-outline btn-md"><i class="fa fa-rocket"></i> Kaydet</button>
+                    <button type="submit" class="btn btn-primary btn-outline btn-md"><i class="fa fa-rocket"></i> Güncelle</button>
                     <a href="<?php echo base_url("product"); ?>" class="btn btn-danger btn-outline btn-md"><i class="fa fa-remove "></i> İptal</a>
                 </form>
             </div><!-- .widget-body -->
