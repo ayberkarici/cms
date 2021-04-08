@@ -23,7 +23,7 @@
             <th class="w134">Url</th>
             <th>Görsel</th>
             <th class="order-status">Durumu</th>
-            <th>İşlem</th>
+            <th class="w150">İşlem</th>
         </thead>
         <tbody class="sortable" data-url="<?php echo base_url("references/rankSetter"); ?>">
             <?php foreach ($items as $item):?>

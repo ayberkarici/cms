@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class References extends CI_Controller {
+class Brands extends CI_Controller {
 
 	public $viewFolder = "";
 
@@ -9,9 +9,9 @@ class References extends CI_Controller {
 	{
 		parent:: __construct();
 
-		$this->viewFolder = "references_v";
+		$this->viewFolder = "brands_v";
 
-		$this->load->model("reference_model");
+		$this->load->model("brand_model");
 	}
 
 	public function index()
@@ -20,7 +20,7 @@ class References extends CI_Controller {
 
 
 		/* Tablodan verilerin getirilmesi  */
-		$items = $this->reference_model->get_all(array(),"rank ASC");
+		$items = $this->brand_model->get_all(array(),"rank ASC");
 		
 		/* viewe gönderilecek değişkenlerin set edilmesi */
         $viewData->viewFolder = $this->viewFolder;
@@ -56,7 +56,7 @@ class References extends CI_Controller {
 			$this->session->set_flashdata("alert", $alert);
 			$this->form_validation->set_rules("img_url","image URL","required");
 
-			redirect(base_url("references/new_form"));
+			redirect(base_url("brands/new_form"));
 
 			die();
 		};
@@ -88,16 +88,13 @@ class References extends CI_Controller {
 			if($upload) {
 				$uploaded_file = $this->upload->data("file_name"); 
 
-				$insert = $this->reference_model->add(
+				$insert = $this->brand_model->add(
 					array(
 						"title"			=> $this->input->post("title"),
-						"description"	=> $this->input->post("description"),
-						"url"			=> convertToSEO($this->input->post("title")),
 						"img_url"		=> $uploaded_file,
 						"rank"			=> 0,
 						"isActive"		=> 1,
-						"createdAt"		=> date("Y-m-d H:i:s"),
-						"changedAt"		=> date("Y-m-d H:i:s")
+						"createdAt"		=> date("Y-m-d H:i:s")
 					)
 				);
 			
@@ -123,14 +120,14 @@ class References extends CI_Controller {
 			
 				$this->session->set_flashdata("alert", $alert);
 				
-				redirect(base_url("references/new_form"));
+				redirect(base_url("brands/new_form"));
 
 				die();
 			}
 			
 			$this->session->set_flashdata("alert", $alert);
 			
-			redirect(base_url("references"));			
+			redirect(base_url("brands"));			
 		} else {
 			$viewData = new stdClass();
 
@@ -147,7 +144,7 @@ class References extends CI_Controller {
 	{
 		$viewData = new stdClass();
 
-		$item = $this->reference_model->get(
+		$item = $this->brand_model->get(
 			array (
 				"id" => $id
 			)
@@ -192,7 +189,7 @@ class References extends CI_Controller {
 				$upload = $this->upload->do_upload("img_url");
 		
 				if($upload) {
-					$old_image = $this->reference_model->get(
+					$old_image = $this->brand_model->get(
 						array(
 							"id" => $id
 						)
@@ -202,10 +199,7 @@ class References extends CI_Controller {
 					
 					$data = array(
 						"title"			=> $this->input->post("title"),
-						"description"	=> $this->input->post("description"),
-						"url"			=> convertToSEO($this->input->post("title")),
 						"img_url"		=> $uploaded_file,
-						"changedAt"		=> date("Y-m-d H:i:s")
 					);
 				} else {
 					$alert = array(
@@ -216,21 +210,18 @@ class References extends CI_Controller {
 				
 					$this->session->set_flashdata("alert", $alert);
 					
-					redirect(base_url("references/update_form/$id"));
+					redirect(base_url("brands/update_form/$id"));
 					
 					die();
 				}
 				
 			} else {
 				$data = array(
-					"title"			=> $this->input->post("title"),
-					"description"	=> $this->input->post("description"),
-					"url"			=> convertToSEO($this->input->post("title")),
-					"changedAt"		=> date("Y-m-d H:i:s")
+					"title"	=> $this->input->post("title")
 				);
 			}
 
-			$update = $this->reference_model->update(array("id" => $id), $data);
+			$update = $this->brand_model->update(array("id" => $id), $data);
 			
 			if($update) {
 				if($_FILES['img_url']['name'] !== "") {
@@ -252,14 +243,14 @@ class References extends CI_Controller {
 			
 			$this->session->set_flashdata("alert", $alert);
 			
-			redirect(base_url("references"));			
+			redirect(base_url("brands"));			
 		} else {
 			$viewData = new stdClass();
 
 			$viewData->viewFolder = $this->viewFolder;
 			$viewData->subViewFolder = "update";
 			$viewData->form_error = true;
-			$viewData->item = $this->reference_model->get(
+			$viewData->item = $this->brand_model->get(
 				array(
 					"id" => $id
 				)
@@ -273,7 +264,13 @@ class References extends CI_Controller {
 
 	public function delete($id)
 	{	
-		$delete = $this->reference_model->delete(
+		$deleted_item = $this->brand_model->get(
+			array(
+				"id" => $id
+			)
+		);
+
+		$delete = $this->brand_model->delete(
 			array(
 				"id" => $id
 			)
@@ -282,6 +279,7 @@ class References extends CI_Controller {
 
 		//TODO alert sistemi eklenecek
 		if($delete) {
+			unlink("uploads/$this->viewFolder/$deleted_item->img_url");
 
 			$alert = array(
 				'title' => "İşlem Başarılı!",
@@ -301,7 +299,7 @@ class References extends CI_Controller {
 		
 		$this->session->set_flashdata("alert", $alert);
 		
-		redirect(base_url("references"));
+		redirect(base_url("brands"));
 		
 	}
 
@@ -310,7 +308,7 @@ class References extends CI_Controller {
 		if($id) {
 			$isActive = ($this->input->post('data') === "true") ? 1 : 0 ;
 
-			$this->reference_model->update(
+			$this->brand_model->update(
 				array(
 					"id" => $id
 				),
@@ -331,7 +329,7 @@ class References extends CI_Controller {
 
 		foreach ($items as $rank => $id) {
 
-			$this->reference_model->update(
+			$this->brand_model->update(
 				array(
 					"id" 		=> $id,
 					"rank !=" 	=> $rank
