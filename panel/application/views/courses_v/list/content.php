@@ -2,7 +2,7 @@
 <div class="col-md-12 col-sm-12 col-xs-12">
     <h4 class="m-b-lg ">
         <span>Kurs Listesi</span>
-        <a href="<?php echo base_url('courses/new_form'); ?>" class=" btn btn-primary btn-outline btn-info btn-xs pull-right"><i class="fa fa-plus"></i> Yeni Ekle</a>
+        <a href="<?php echo base_url('courses/new_form'); ?>" class=" btn btn-primary btn-outline btn-info btn-sm pull-right"><i class="fa fa-plus"></i> Yeni Ekle</a>
     </h4>
     <div class="widget p-lg">
 
