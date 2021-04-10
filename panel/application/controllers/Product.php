@@ -20,7 +20,7 @@ class Product extends CI_Controller {
         $viewData = new stdClass();
 
 
-		/* Tablodan verilerin getirilmesi  */
+		/* Tablodan verilerin getirilmesi */
 		$items = $this->product_model->get_all(array(),"rank ASC");
 		
 		/* viewe gönderilecek değişkenlerin set edilmesi */

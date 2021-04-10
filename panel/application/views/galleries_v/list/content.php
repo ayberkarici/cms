@@ -19,9 +19,8 @@
         <thead>
             <th class="order"><i class="fa fa-reorder"></i></th>
             <th class="order">#id</th>
-            <th>Galeri Adı</th>
+            <th>Galeri/Klasör Adı</th>
             <th>Galeri Türü</th>
-            <th>Klasör Adı</th>
             <th class="w134">Url</th>
             <th class="order-status">Durumu</th>
             <th>İşlem</th>
@@ -33,7 +32,6 @@
                 <td class="order center">#<?php echo $item->id; ?></td>
                 <td><?php echo $item->title; ?></td>
                 <td class="text-center"><?php echo $item->gallery_type; ?></td>
-                <td ><?php echo $item->title; ?></td>
                 <td><?php echo $item->url; ?></td>
                 <td class="order-status">							
 						<input 
@@ -60,7 +58,7 @@
                     <a 
                         type="button" 
                         class="btn btn-sm btn-dark" 
-                        href="<?php echo base_url("galleries/image_form/". $item->id) ?>">
+                        href="<?php echo base_url("galleries/upload_form/". $item->id) ?>">
                         <i class="fa <?php echo $gallery_icon;?>"></i> Galeriye gözat
                     </a>
                     <a 

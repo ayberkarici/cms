@@ -477,75 +477,106 @@ class Galleries extends CI_Controller {
 
 	}
 
-	public function image_form($id)
-	{
-		$viewData = new stdClass();
-		
-		$viewData->viewFolder = $this->viewFolder;
+	public function upload_form($id){
+
+        $viewData = new stdClass();
+
+        /** View'e gönderilecek Değişkenlerin Set Edilmesi.. */
+        $viewData->viewFolder = $this->viewFolder;
         $viewData->subViewFolder = "image";
-        $viewData->item = $this->gallery_model->get(
-			array(
-				"id" => $id
-			)
-		);
 
-		$viewData->item_images = $this->product_image_model->get_all(
-			array(
-				"product_id" => $id
-			), "rank ASC"
-		);
+        $item = $this->gallery_model->get(
+            array(
+                "id"    => $id
+            )
+        );
 
-		$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
-	}
+        $viewData->item = $item;
 
-	public function image_upload($id)
-	{
-		$file_name = convertToSEO(pathinfo($_FILES["file"]["name"], PATHINFO_FILENAME)).".".pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION);
+        if($item->gallery_type == "image"){
 
-		$config['allowed_types'] = "jpg|jpeg|png";
-		$config['upload_path'] = "uploads/$this->viewFolder/";
-		$config['file_name'] = $file_name;
+            $viewData->items = $this->image_model->get_all(
+                array(
+                    "gallery_id"    => $id
+                ), "rank ASC"
+            );
 
-		$this->load->library("upload", $config);
+        } else if($item->gallery_type == "file"){
 
-		$upload = $this->upload->do_upload("file");
+            $viewData->items = $this->file_model->get_all(
+                array(
+                    "gallery_id"    => $id
+                ), "rank ASC"
+            );
 
-		if($upload) {
-			$uploaded_file = $this->upload->data("file_name"); 
+        } else {
 
-			$this->product_image_model->add(
-				array(
-					"img_url" => $uploaded_file,
-					"product_id" => $id,
-					"rank" => 0,
-					"isActive" => 1,
-					"isCover" => 0,
-					"createdAt" => date("Y-m-d H:i:s")
-				)
-			);
+            $viewData->items = $this->video_model->get_all(
+                array(
+                    "gallery_id"    => $id
+                ), "rank ASC"
+            );
 			
-		} else {
-			echo "İşlem başarısız";
-		}
-	
-	}
+        }
 
-	public function refresh_image_list($id)
-	{
-		$viewData = new stdClass();
-		
-		$viewData->viewFolder = $this->viewFolder;
-        $viewData->subViewFolder = "image";
+		$viewData->gallery_type = $item->gallery_type;
 
-		$viewData->item_images = $this->product_image_model->get_all(
-			array(
-				"product_id" => $id
-			)
-		);
+        $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
 
-		$render_page = $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/render_elements/image_list_v", $viewData, true);
+    }
 
-		echo $render_page;
-	}
+    public function file_upload($gallery_id, $gallery_type, $folderName){
+
+        $file_name = convertToSEO(pathinfo($_FILES["file"]["name"], PATHINFO_FILENAME)) . "." . pathinfo($_FILES["file"]["name"], PATHINFO_EXTENSION);
+
+        $config["allowed_types"] = ($gallery_type == "image") ? "jpg|jpeg|png" : "pdf|doc|docx|txt";
+        $config["upload_path"]   = ($gallery_type == "image") ? "uploads/$this->viewFolder/images/$folderName/" : "uploads/$this->viewFolder/files/$folderName/";
+        $config["file_name"]     = $file_name;
+
+        $this->load->library("upload", $config);
+
+        $upload = $this->upload->do_upload("file");
+
+        if($upload){
+
+            $uploaded_file = $this->upload->data("file_name");
+
+            $modelName = ($gallery_type == "image") ? "image_model" : "file_model";
+
+            $this->$modelName->add(
+                array(
+                    "url"           => "{$config["upload_path"]}$uploaded_file",
+                    "rank"          => 0,
+                    "isActive"      => 1,
+                    "createdAt"     => date("Y-m-d H:i:s"),
+                    "gallery_id"    => $gallery_id
+                )
+            );
+
+        } else {
+            echo "islem basarisiz";
+        }
+
+    }
+
+    public function refresh_file_list($id){
+
+//        $viewData = new stdClass();
+//
+//        /** View'e gönderilecek Değişkenlerin Set Edilmesi.. */
+//        $viewData->viewFolder = $this->viewFolder;
+//        $viewData->subViewFolder = "image";
+//
+//        $viewData->item_images = $this->product_image_model->get_all(
+//            array(
+//                "product_id"    => $id
+//            )
+//        );
+//
+//        $render_html = $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/render_elements/image_list_v", $viewData, true);
+//
+//        echo $render_html;
+
+    }
 
 }
