@@ -47,24 +47,28 @@
                 </td>
                 <td class="order-progress">
                     <?php 
-                        if($item->gallery_type == "image")
+                        if($item->gallery_type == "image") {
                             $gallery_icon = "fa-image";
-                        else if ($item->gallery_type == "video")
+                            $button_url = "galleries/upload_form/$item->id";
+                        } else if ($item->gallery_type == "video") {
                             $gallery_icon = "fa-play-circle";
-                        else 
+                            $button_url = "galleries/gallery_video_list/$item->id";
+                        } else { 
                             $gallery_icon = "fa-folder";
+                            $button_url = "galleries/upload_form/$item->id";
+                        }
                     ?>
 
                     <a 
                         type="button" 
                         class="btn btn-sm btn-dark" 
-                        href="<?php echo base_url("galleries/upload_form/". $item->id) ?>">
+                        href="<?php echo base_url($button_url) ?>">
                         <i class="fa <?php echo $gallery_icon;?>"></i> Galeriye gözat
                     </a>
                     <a 
                         type="button" 
                         class="btn btn-sm btn-warning " 
-                        href="<?php echo base_url("galleries/update_form/". $item->id) ?>">
+                        href="<?php echo base_url("galleries/update_form/$item->id") ?>">
                         <i class="fa fa-pencil-square-o"></i> Düzenle
                     </a>
                     <button  

@@ -16,7 +16,7 @@
             <th>İşlem</th>
         </thead>
 
-        <tbody class="sortable" data-url="<?php echo base_url("galleries/imageRankSetter"); ?>">
+        <tbody class="sortable" data-url="<?php echo base_url("galleries/fileRankSetter/$gallery_type"); ?>">
             <?php foreach($items as $item){ ?>
 
                 <tr id="ord-<?php echo $item->id; ?>">
@@ -32,7 +32,7 @@
                     <td><?php echo $item->url; ?></td>
                     <td class="w100 text-center order-status">
                         <input
-                            data-url="<?php echo base_url("galleries/imageIsActiveSetter/$item->id"); ?>"
+                            data-url="<?php echo base_url("galleries/fileIsActiveSetter/$item->id/$gallery_type"); ?>"
                             data-id="<?php echo $item->id ?>"
                             class="btn-xs isActive"
                             type="checkbox"
@@ -43,7 +43,7 @@
                     </td>
                     <td class="w100 text-center">
                         <button
-                            data-url="<?php echo base_url("galleries/imageDelete/$item->id/$item->gallery_id"); ?>"
+                            data-url="<?php echo base_url("galleries/fileDelete/$item->id/$item->gallery_id/$gallery_type"); ?>"
                             class="btn btn-sm btn-danger btn-outline remove-btn btn-block">
                             <i class="fa fa-trash"></i> Sil
                         </button>

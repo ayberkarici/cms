@@ -41,7 +41,7 @@ $(document).ready(function () {
 
             iziToast.success({
                 title: 'İşlem Başarılı',
-                message: $data_id+' No\'lu görselin durumu değiştirildi',
+                message: $data_id+' No\'lu kaydın durumu değiştirildi',
                 position:'bottomRight'
             });
 
@@ -106,14 +106,14 @@ $(document).ready(function () {
 
     uploadSection.on("complete", function(file){
 
-        var $data_url = $("#dropzone").data("url");
+        const $data_url = $("#dropzone").data("url");
 
         $.post($data_url, {}, function(response){
 
             $(".image_list_container").html(response);
             
             $('[data-switchery]').each(function(){
-				var $this = $(this),
+				let $this = $(this),
 					color = $this.attr('data-color') || '#188ae2',
 					jackColor = $this.attr('data-jackColor') || '#ffffff',
 					size = $this.attr('data-size') || 'default'
@@ -129,7 +129,7 @@ $(document).ready(function () {
 
             iziToast.info({
                 title: 'Bilgi!',
-                message: 'Yeni bir görsel eklendi',
+                message: 'Yeni bir dosya eklendi',
                 position:'bottomRight'
             });
             
