@@ -60,7 +60,8 @@ class Userop extends CI_Controller {
             $user = $this->user_model->get(
                 array(
                     "email"     => $this->input->post("user_email"), 
-                    "password"  => md5($this->input->post("user_password"))
+                    "password"  => md5($this->input->post("user_password")),
+                    "isActive"     => 1 
                 )
             );            
 
@@ -89,5 +90,11 @@ class Userop extends CI_Controller {
                 redirect(base_url("login"));
             }
         }
+    }
+    public function logout() {
+
+        $this->session->unset_userdata("user");
+
+        redirect(base_url("login"));
     }
 }
