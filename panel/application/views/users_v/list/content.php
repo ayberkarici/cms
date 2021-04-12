@@ -22,7 +22,7 @@
             <th class="w134">Ad Soyad</th>
             <th>E-posta</th>
             <th class="order-status">Durumu</th>
-            <th class="w150">İşlem</th>
+            <th class="w300">İşlem</th>
         </thead>
         <tbody>
             <?php foreach ($items as $item):?>
@@ -43,12 +43,18 @@
                             data-size="small"
                         />
                 </td>
-                <td class="order-progress">
+                <td class="order-progress ">
                     <a 
                         type="button" 
                         class="btn btn-xs btn-warning " 
-                        href="<?php echo base_url("users/update_form/". $item->id) ?>">
+                        href="<?php echo base_url("users/update_form/$item->id") ?>">
                         <i class="fa fa-pencil-square-o"></i> Düzenle
+                    </a>
+                    <a 
+                        type="button" 
+                        class="btn btn-xs btn-purple" 
+                        href="<?php echo base_url("users/update_password_form/$item->id") ?>">
+                        <i class="fa fa-unlock-alt"></i> Şifreyi düzenle
                     </a>
                     <button  
                         type="button" 
@@ -57,7 +63,6 @@
                         data-name="<?php echo $item->user_name ?>">
                         <i class="fa fa-trash-o"></i> Sil
                     </button>
-                
                 </td>
             </tr>
             <?php endforeach; ?>
