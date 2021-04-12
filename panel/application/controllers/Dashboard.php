@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Dashboard extends CI_Controller {
 
 	public $viewFolder = "";
+//	public $user = "";
 
 	public function __construct()
 	{
@@ -11,6 +12,14 @@ class Dashboard extends CI_Controller {
 
 		$this->viewFolder = "dashboard_v";
 		$this->subViewFolder = "list";
+
+//		$this->user = get_Active_user();
+
+		if(!get_active_user()){
+			redirect(base_url("login"));
+		}
+
+
 	}
 
 	public function index()
