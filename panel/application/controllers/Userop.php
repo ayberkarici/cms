@@ -142,7 +142,90 @@ class Userop extends CI_Controller {
 		$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
     }
     public function reset_password(){
-        echo "reset_test";
+        $this->load->library("form_validation");
+
+        
+        $this->form_validation->set_rules("email","E-posta","required|trim|valid_email");
+
+		$this->form_validation->set_message(
+			array(
+				"required" => "<b>{field}</b> alanı doldurulmalıdır",
+				"valid_email" => "Lütfen geçerli bir <b>{field}</b> adresi girin"
+			)
+		);
+
+        if($this->form_validation->run() === FALSE) {
+            $viewData = new stdClass();
+
+			$viewData->viewFolder = $this->viewFolder;
+			$viewData->subViewFolder = "forget_password";
+			$viewData->form_error = true;
+	
+			$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
+
+        } else {
+            $user = $this->user_model->get(
+                array(
+                    "isActive" => 1,
+                    "email" => $this->input->post("email"),
+
+                )
+            );
+
+            if($user) {
+
+                $this->load->model("emailsettings_model");
+
+                $email_settings = $this->emailsettings_model->get(
+                    array(
+                        "isActive" => 1
+                    )
+                );
+
+                $config = array(
+                    "protocol"  => $email_settings->protocol,
+                    "smtp_host" => $email_settings->host,
+                    "smtp_port" => $email_settings->port,
+                    "smtp_user" => $email_settings->user,
+                    "smtp_pass" => $email_settings->password,
+                    "starttls"  => true,
+                    "charset"   => "utf-8",
+                    "mailtype"  => "html",
+                    "wordwrap"  => true,
+                    "newline"   => "\r\n"
+                );
+        
+                $this->load->library("email", $config);
+        
+                $this->email->from($email_settings->from, $email_settings->user_name);
+                $this->email->to($user->email);
+                $this->email->subject("CMS için email çalışmaları");
+                $this->email->message("Deneme e-postasi.. ");
+        
+                $send = $this->email->send();
+        
+                if($send) {
+                    echo "Eposta başarılı bir şekilde gönderildi.";
+                } else {
+                    echo $this->email->print_debugger();
+                }
+
+            } else {
+                $alert = array(
+                    "title" => "İşlem Başarısız", 
+                    "text"  => "Böyle bir kullanıcı bulunamadı",
+                    "type"  => "error"
+                );
+
+                $this->session->set_flashdata("alert", $alert);
+
+                redirect(base_url("sifremi-unuttum"));
+            }
+
+
+        }
+
+
     }
 
 

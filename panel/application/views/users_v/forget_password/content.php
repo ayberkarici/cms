@@ -10,8 +10,16 @@
 
 		<form action="<?php echo base_url("sifremi-yenile");?>" method="post">
 			<div class="form-group">
-				<input id="reset-password-email" type="email" class="form-control" name="email" placeholder="E-posta Adresi">
+				<input type="email" 
+				class="form-control" 
+				name="email" 
+				placeholder="E-posta Adresi" 
+				value="<?php echo isset($form_error) ? set_value("email") : "" ; ?>">
+				<?php if(isset($form_error)): ?>
+                	<small class="input-form-error"><?php echo form_error("email") ?></small>
+            	<?php endif; ?>
 			</div>
+			
 			<button class="btn btn-primary ">Şifremi sıfırla</button>
 		</form>
 	</div><!-- #reset-password-form -->
