@@ -23,7 +23,16 @@
             <?php endif; ?>
 		</div>
 
+
 		<button type="submit" class="btn btn-primary">Giriş Yap</button>
+
 	</form>
+
 </div><!-- #login-form -->
+	
+	<div class="form-group">
+			<div class="simple-page-footer">
+				<p><a href="<?php echo base_url("sifremi-unuttum"); ?>">Şifremi Unuttum</a></p>
+			</div>
+		</div>
 

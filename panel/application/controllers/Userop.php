@@ -97,4 +97,53 @@ class Userop extends CI_Controller {
 
         redirect(base_url("login"));
     }
+    public function send_email()
+    {
+        $config = array(
+            "protocol"  => "smtp",
+            "smtp_host" => "ssl://smtp.gmail.com",
+            "smtp_port" => "465",
+            "smtp_user" => "ayberk816gg@gmail.com",
+            "smtp_pass" => "Soru.bankasi54",
+            "starttls"  => true,
+            "charset"   => "utf-8",
+            "mailtype"  => "html",
+            "wordwrap"  => true,
+            "newline"   => "\r\n"
+        );
+
+        $this->load->library("email", $config);
+
+        $this->email->from("ayberk816gg@gmail.com", "CMS");
+        $this->email->to("ayberk_gsli@hotmail.com");
+        $this->email->subject("CMS için email çalışmaları");
+        $this->email->message("Deneme e-postasi.. ");
+
+        $send = $this->email->send();
+
+        if($send) {
+            echo "Eposta başarılı bir şekilde gönderildi.";
+        } else {
+            echo $this->email->print_debugger();
+        }
+    }
+    public function forget_password(){
+        
+        if(get_active_user()) {
+            redirect(base_url());
+        }
+
+        $viewData = new stdClass();
+
+		/* viewe gönderilecek değişkenlerin set edilmesi */
+        $viewData->viewFolder = $this->viewFolder;
+        $viewData->subViewFolder = "forget_password";
+		
+		$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
+    }
+    public function reset_password(){
+        echo "reset_test";
+    }
+
+
 }
