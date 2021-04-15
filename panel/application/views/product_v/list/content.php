@@ -36,6 +36,7 @@
                 <td class="order-status">							
 						<input 
                             data-url="<?php echo base_url("product/isActiveSetter/$item->id"); ?>"
+                            data-id="<?php echo $item->id ?>"
                             type="checkbox" 
                             class="btn-xs isActive" 
                             data-switchery 

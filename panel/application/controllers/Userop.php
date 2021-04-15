@@ -29,7 +29,6 @@ class Userop extends CI_Controller {
 		
 		$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
 	}
-
     public function do_login(){
         $this->load->library("form_validation");
 
@@ -97,8 +96,7 @@ class Userop extends CI_Controller {
 
         redirect(base_url("login"));
     }
-    public function send_email()
-    {
+    public function send_email(){
         $config = array(
             "protocol"  => "smtp",
             "smtp_host" => "ssl://smtp.gmail.com",
@@ -168,46 +166,50 @@ class Userop extends CI_Controller {
                 array(
                     "isActive" => 1,
                     "email" => $this->input->post("email"),
-
                 )
             );
 
             if($user) {
 
-                $this->load->model("emailsettings_model");
+                $this->load->helper("string");
 
-                $email_settings = $this->emailsettings_model->get(
-                    array(
-                        "isActive" => 1
-                    )
-                );
+                $temp_password = random_string();
 
-                $config = array(
-                    "protocol"  => $email_settings->protocol,
-                    "smtp_host" => $email_settings->host,
-                    "smtp_port" => $email_settings->port,
-                    "smtp_user" => $email_settings->user,
-                    "smtp_pass" => $email_settings->password,
-                    "starttls"  => true,
-                    "charset"   => "utf-8",
-                    "mailtype"  => "html",
-                    "wordwrap"  => true,
-                    "newline"   => "\r\n"
-                );
-        
-                $this->load->library("email", $config);
-        
-                $this->email->from($email_settings->from, $email_settings->user_name);
-                $this->email->to($user->email);
-                $this->email->subject("CMS için email çalışmaları");
-                $this->email->message("Deneme e-postasi.. ");
-        
-                $send = $this->email->send();
-        
+                $send = send_email($user->email, "CMS Şifremi Unuttum", "CMS'e geçici olarak <b>{$temp_password}</b> şifresiyle giriş yapabilirsiniz.");
+                        
                 if($send) {
-                    echo "Eposta başarılı bir şekilde gönderildi.";
+                    $this->user_model->update(
+                        array(
+                            "id" => $user->id
+                        ),array(
+                            "password" => md5($temp_password)
+                        )
+                    );
+
+                    $alert = array(
+                        "title" => "İşlem Başarılı", 
+                        "text"  => "Şifreniz başarılı bir şekilde resetlendi. Lütfen E-postanızı kontrol edin!",
+                        "type"  => "success"
+                    );
+    
+                    $this->session->set_flashdata("alert", $alert);
+    
+                    redirect(base_url("login"));
+
+                    die();
+
                 } else {
-                    echo $this->email->print_debugger();
+                    $alert = array(
+                        "title" => "İşlem Başarısız", 
+                        "text"  => "E-posta gönderilirken bir sorun oluştu.",
+                        "type"  => "error"
+                    );
+    
+                    $this->session->set_flashdata("alert", $alert);
+    
+                    redirect(base_url("sifremi-unuttum"));
+
+                    die();
                 }
 
             } else {
@@ -221,12 +223,6 @@ class Userop extends CI_Controller {
 
                 redirect(base_url("sifremi-unuttum"));
             }
-
-
         }
-
-
     }
-
-
 }
