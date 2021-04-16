@@ -1,41 +1,61 @@
 <div class="row">
     <div class="col-md-12">
         <h4 class="m-b-lg ">
-            <span><?php echo "<b>$item->user_name</b> kullanıcısını düzenle"  ?></span>
+            <span><?php echo "<b>$item->company_name</b> ayarları"  ?></span>
         </h4>
     </div>
 
-    <div class="col-md-12">
-        <div class="widget">
-            <div class="widget-body">
+    <div class="col-md-12 m-b-md">
+        <form action="<?php echo base_url("settings/update/$item->id"); ?>" method="post" enctype="multipart/form-data">
 
-                <form action="<?php echo base_url("users/update/$item->id"); ?>" method="post" enctype="multipart/form-data">
-                    <div class="form-group ">
-                        <label>Kullanıcı Adı</label>
-                        <input class="form-control" placeholder="Kullanıcı adını giriniz" name="user_name" value="<?php echo (isset($form_error)) ? set_value("user_name") : $item->user_name;?>">
-                        <?php if(isset($form_error)): ?>
-                            <small class="input-form-error"><?php echo form_error("user_name") ?></small>
-                        <?php endif; ?>
-                    </div>
-                    <div class="form-group ">
-                        <label>Ad Soyad</label>
-                        <input class="form-control" placeholder="Ad Soyad" name="full_name" value="<?php echo (isset($form_error)) ? set_value("full_name") : $item->full_name ;  ?>">
-                        <?php if(isset($form_error)): ?>
-                            <small class="input-form-error"><?php echo form_error("full_name") ?></small>
-                        <?php endif; ?>
-                    </div>
-                    <div class="form-group ">
-                        <label>E-posta Adresi</label>
-                        <input type="email" class="form-control" placeholder="E-posta Adresi" name="email" value="<?php echo (isset($form_error)) ? set_value("email") : $item->email ;  ?>">
-                        <?php if(isset($form_error)): ?>
-                            <small class="input-form-error"><?php echo form_error("email") ?></small>
-                        <?php endif; ?>
-                    </div>
+            <div class="widget">
+                <div class="m-b-lg nav-tabs-horizontal">
+                    <!-- tabs list -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active">
+                            <a href="#tab-1" aria-controls="tab-1" role="tab" data-toggle="tab">Site Bilgileri</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#tab-2" aria-controls="tab-2" role="tab" data-toggle="tab">Adres Bilgisi</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#tab-3"  aria-controls="tab-3" role="tab" data-toggle="tab">Hakkımızda</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#tab-4"  aria-controls="tab-4" role="tab" data-toggle="tab">Misyon</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#tab-5"  aria-controls="tab-5" role="tab" data-toggle="tab">Vizyon</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#tab-6"  aria-controls="tab-6" role="tab" data-toggle="tab">Sosyal Medya</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="#tab-7"  aria-controls="tab-7" role="tab" data-toggle="tab">Logo</a>
+                        </li>
+                    </ul><!-- .nav-tabs -->
 
-                    <button type="submit" class="btn btn-primary btn-outline btn-md"><i class="fa fa-rocket"></i> Güncelle</button>
-                    <a href="<?php echo base_url("users"); ?>" class="btn btn-danger btn-outline btn-md"><i class="fa fa-remove "></i> İptal</a>
-                </form>
-            </div><!-- .widget-body -->
-        </div><!-- .widget -->
+                    <!-- Tab panes -->
+                    <div class="tab-content p-md">
+
+                            <?php  $this->load->view("$viewFolder/$subViewFolder/tabs/site_info"); ?>
+
+                            <?php  $this->load->view("$viewFolder/$subViewFolder/tabs/address"); ?>
+
+                            <?php  $this->load->view("$viewFolder/$subViewFolder/tabs/about_us"); ?>
+
+                            <?php  $this->load->view("$viewFolder/$subViewFolder/tabs/mission"); ?>
+
+                            <?php  $this->load->view("$viewFolder/$subViewFolder/tabs/vision"); ?>
+
+                            <?php  $this->load->view("$viewFolder/$subViewFolder/tabs/social_media"); ?>
+
+                            <?php  $this->load->view("$viewFolder/$subViewFolder/tabs/logo"); ?>
+                        
+
+                    </div><!-- .tab-content  -->
+                </div><!-- .nav-tabs-horizontal -->
+            </div><!-- .widget -->
+            <button type="submit" class="btn btn-primary  btn-md"><i class="fa fa-rocket"></i> Güncelle</button>
+        </form>
     </div><!-- END column -->
-</div><!-- END row -->
