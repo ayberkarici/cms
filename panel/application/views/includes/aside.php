@@ -91,6 +91,13 @@
             <span class="menu-text">Urunler</span>
           </a>
         </li>
+
+        <li>
+          <a href="<?php echo base_url('services') ?>">
+            <i class="menu-icon fa fa-anchor"></i>
+            <span class="menu-text">Hizmetlerimiz</span>
+          </a>
+        </li>
         
         <li>
           <a href="<?php echo base_url('news') ?>">
