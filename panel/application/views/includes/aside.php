@@ -92,6 +92,26 @@
           </a>
         </li>
 
+        <li class="has-submenu">
+          <a href="javascript:void(0)" class="submenu-toggle">
+            <i class="menu-icon fa fa-asterisk"></i>
+            <span class="menu-text">Portfolya İşlemleri</span>
+            <i class="menu-caret zmdi zmdi-hc-sm zmdi-chevron-right"></i>
+          </a>
+          <ul class="submenu">
+            <li>
+              <a href="<?php echo base_url("portfolio_categories"); ?>">
+                <span class="menu-text">Portfolyo Kategorileri</span>
+              </a>
+            </li>
+            <li>
+              <a href="buttons.html">
+                <span class="menu-text">Portfolyo</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        
         <li>
           <a href="<?php echo base_url('services') ?>">
             <i class="menu-icon fa fa-anchor"></i>
