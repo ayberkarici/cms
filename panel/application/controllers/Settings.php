@@ -16,6 +16,7 @@ class Settings extends CI_Controller {
 		if(!get_active_user()){
 			redirect(base_url("login"));
 		}
+		
 	}
 
 	public function index(){
@@ -117,6 +118,10 @@ class Settings extends CI_Controller {
 				);
 			
 				if($insert) {
+					// Session update işlemi
+					$settings = $this->settings_model->get();
+					$this->session->set_userdata("settings", $settings);
+
 					$alert = array(
 						'title' => "İşlem Başarılı!",
 						'type' 	=> "success",
@@ -205,9 +210,7 @@ class Settings extends CI_Controller {
 		redirect(base_url("settings"));
 		
 	}
-	
-	public function update($id)
-	{
+	public function update($id){
 		$this->load->library("form_validation");
 
 		// Kurallar yazılır
@@ -310,7 +313,11 @@ class Settings extends CI_Controller {
 					'text'	=> "Kayıt güncelleme sırasında bir problem oluştu"
 				);
 			};
-			
+
+			// Session update işlemi
+			$settings = $this->settings_model->get();
+			$this->session->set_userdata("settings", $settings);
+
 			$this->session->set_flashdata("alert", $alert);
 			
 			redirect(base_url("settings"));			

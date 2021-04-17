@@ -19,6 +19,9 @@ class Dashboard extends CI_Controller {
 			redirect(base_url("login"));
 		}
 
+		$this->load->model("settings_model");
+		$settings = $this->settings_model->get();
+		$this->session->set_userdata("settings", $settings);
 
 	}
 
