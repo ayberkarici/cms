@@ -13,7 +13,7 @@
             <th>Görsel</th>
             <th>Dosya Yolu/Adı</th>
             <th class="order-status">Durumu</th>
-            <th>İşlem</th>
+            <th class="order-status">İşlem</th>
         </thead>
 
         <tbody class="sortable" data-url="<?php echo base_url("galleries/fileRankSetter/$gallery_type"); ?>">
@@ -38,6 +38,7 @@
                             type="checkbox"
                             data-switchery
                             data-color="#10c469"
+                            data-size="small"
                             <?php echo ($item->isActive) ? "checked" : ""; ?>
                         />
                     </td>

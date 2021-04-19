@@ -95,7 +95,7 @@
         <li class="has-submenu">
           <a href="javascript:void(0)" class="submenu-toggle">
             <i class="menu-icon fa fa-asterisk"></i>
-            <span class="menu-text">Portfolya İşlemleri</span>
+            <span class="menu-text">Portfolyo İşlemleri</span>
             <i class="menu-caret zmdi zmdi-hc-sm zmdi-chevron-right"></i>
           </a>
           <ul class="submenu">
@@ -105,7 +105,7 @@
               </a>
             </li>
             <li>
-              <a href="buttons.html">
+              <a href="<?php echo base_url("portfolios"); ?>">
                 <span class="menu-text">Portfolyo</span>
               </a>
             </li>
