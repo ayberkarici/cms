@@ -14,10 +14,26 @@ class Home  extends CI_Controller {
     }
 
     public function product_list() {
+        $this->load->helper("text");
+        $this->load->helper("tools");
         $this->load->model("product_model");
         $viewData = new stdClass();
         
         $viewData->viewFolder = "product_list_v";
+
+        $viewData->products = $this->product_model->get_all(array("isActive"  => 1), "rank ASC");
+		
+		$this->load->view("product_list_v", $viewData);
+
+    }
+
+    public function product_detail() {
+        $this->load->helper("text");
+        $this->load->helper("tools");
+        $this->load->model("product_model");
+        $viewData = new stdClass();
+        
+        $viewData->viewFolder = "product_v";
 
         $viewData->products = $this->product_model->get_all(array("isActive"  => 1), "rank ASC");
 		
