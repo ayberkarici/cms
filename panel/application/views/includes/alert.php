@@ -19,5 +19,6 @@
                 });
             </script>
         <?php }
+        unset($_SESSION["alert"]);
     }
 ?>

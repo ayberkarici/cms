@@ -130,7 +130,7 @@ $(document).ready(function () {
             iziToast.info({
                 title: 'Bilgi!',
                 message: 'Yeni bir dosya eklendi',
-                position:'bottomRight'
+                position:'bottomLeft'
             });
             
         });
