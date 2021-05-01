@@ -7,7 +7,7 @@
 <!-- "dark": dark version of header e.g. class="header dark clearfix" -->
 <!-- "centered": mandatory class for the centered logo layout -->
 <!-- ================ -->
-<header class="header dark clearfix">
+<header class="header dark clearfix " >
     <div class="container">
         <div class="row">
             <div class="col-md-auto hidden-md-down pl-3">
@@ -70,7 +70,7 @@
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Hakkımızda</a>
                                     <ul class="dropdown-menu">
                                         <li ><a href="features-dark-page.html">Hakkımızda</a></li>
-                                        <li ><a href="features-dark-page.html">Portfolio</a></li>
+                                        <li ><a href="<?php echo base_url("portfolyo"); ?>">Portfolyo</a></li>
                                         <li ><a href="features-dark-page.html">Haberler</a></li>
                                         <li ><a href="features-dark-page.html">Referanslar</a></li>
                                     </ul>
@@ -84,7 +84,7 @@
                                     </ul>
                                 </li>
 
-                                <li class="active"><a href="index.html" class="nav-link">Ürünler</a></li>
+                                <li class="active"><a href="<?php echo base_url("urunler"); ?>" class="nav-link">Ürünler</a></li>
                                 <li class="active"><a href="index.html" class="nav-link">Eğitimler</a></li>
                                 <li class="active"><a href="index.html" class="nav-link">Markalar</a></li>
                             </ul>

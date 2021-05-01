@@ -27,7 +27,7 @@ class Home  extends CI_Controller {
 
     }
 
-    public function product_detail() {
+    public function product_detail($url= "") {
         $this->load->helper("text");
         $this->load->helper("tools");
         $this->load->model("product_model");
@@ -35,8 +35,39 @@ class Home  extends CI_Controller {
         
         $viewData->viewFolder = "product_v";
 
-        $viewData->products = $this->product_model->get_all(array("isActive"  => 1), "rank ASC");
+        $viewData->product = $this->product_model->get(
+            array(
+                "isActive"  => 1,
+                "url"       => $url
+            )
+        );
+
+        $viewData->products = $this->product_model->get_all(
+            array(
+                "isActive"  => 1,
+                "id !="    => $viewData->product->id
+            ), "rand()", array("start" => 0, "count" => 3)
+        );
 		
+		$this->load->view("product_list_v", $viewData);
+
+    }
+
+    public function portfolio_list() {
+        $this->load->helper("text");
+        $this->load->helper("tools");
+        $this->load->model("portfolio_model");
+
+        $viewData = new stdClass();
+        
+        $viewData->viewFolder = "portfolio_list_v";
+
+        $viewData->portfolios = $this->portfolio_model->get_all(
+            array(
+                "isActive"  => 1
+            ), "rank ASC"
+        );
+
 		$this->load->view("product_list_v", $viewData);
 
     }
