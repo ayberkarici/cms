@@ -66,6 +66,7 @@ class Courses extends CI_Controller {
 		};
 
 		$this->form_validation->set_rules("title","Başlık","required|trim");
+		$this->form_validation->set_rules("description","Açıklama","required|trim");
 		$this->form_validation->set_rules("event_date","Eğitim Tarihi","required|trim");
 
 		$this->form_validation->set_message(
