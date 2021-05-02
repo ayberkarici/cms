@@ -34,7 +34,7 @@
                         </p>
                         <div class="separator-2"></div>
                         <p class="mb-10"><?php echo character_limiter(strip_tags($course->description), 100) ?> </p>
-                        <a href="<?php echo base_url("portfolyo-detay/$course->url"); ?>" class="btn btn-animated btn-default">Görüntüle <i class="fa fa-arrow-right"></i></a>
+                        <a href="<?php echo base_url("egitim-detay/$course->url"); ?>" class="btn btn-animated btn-default">Görüntüle <i class="fa fa-arrow-right"></i></a>
                     </div>
                     </div>
                 </div>
