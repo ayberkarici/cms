@@ -68,7 +68,47 @@ class Home  extends CI_Controller {
             ), "rank ASC"
         );
 
-		$this->load->view("product_list_v", $viewData);
+		$this->load->view("portfolio_list_v", $viewData);
+
+    }
+
+    public function portfolio_detail($url= "") {
+        $this->load->helper("text");
+        $this->load->helper("tools");
+        $this->load->model("portfolio_model");
+        $this->load->model("portfolio_image_model");
+
+        $viewData = new stdClass();
+        
+        $viewData->viewFolder = "portfolio_v";
+
+        $viewData->portfolio_item = $this->portfolio_model->get(
+            array(
+                "isActive"  => 1,
+                "url"       => $url
+            )
+        );
+        $viewData->rand_diff_item = $this->portfolio_model->get_random(
+            array(
+                "id !="   => $viewData->portfolio_item->id
+            )
+        );
+
+        $viewData->portfolio_aside_images = $this->portfolio_image_model->get_all(
+            array(
+                "portfolio_id" => $viewData->rand_diff_item->id
+            )
+        );
+
+        $viewData->portfolio_item_image = $this->portfolio_image_model->get_all(
+            array(
+                "portfolio_id" => $viewData->portfolio_item->id
+            )
+        );
+
+		$this->load->view("portfolio_v", $viewData);
+		
+		
 
     }
 }

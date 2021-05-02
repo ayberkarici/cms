@@ -57,3 +57,4 @@ $route['urunler'] = 'home/product_list';
 $route['urun-detay/(:any)'] = 'home/product_detail/$1';
 
 $route['portfolyo'] = 'home/portfolio_list';
+$route['portfolyo-detay/(:any)'] = 'home/portfolio_detail/$1';

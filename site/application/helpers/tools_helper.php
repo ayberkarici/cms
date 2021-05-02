@@ -23,6 +23,29 @@ function get_product_cover_image($product_id) {
     return !empty($cover_image) ? $cover_image->img_url : "" ;
 }
 
+function get_portfolio_cover_image($portfolio_id) {
+    $t = &get_instance();
+
+    $t->load->model("portfolio_image_model");
+
+    $cover_image = $t->portfolio_image_model->get(
+        array(
+            "isCover"       => 1,
+            "portfolio_id"    => $portfolio_id
+        )
+    );
+
+    if(empty($cover_image)){
+        $cover_image = $t->portfolio_image_model->get(
+            array(
+                "portfolio_id"    => $portfolio_id
+            )
+        );
+    };
+
+    return !empty($cover_image) ? $cover_image->img_url : "" ;
+}
+
 function get_sub_images($product_id) {
     $t = &get_instance();
 

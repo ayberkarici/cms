@@ -9,9 +9,14 @@ class Portfolio_model extends CI_Model
     }
 
     // Tüm kayıtları getiren metot
-    public function get_all($where = array(), $order = "id ASC")
+    public function get_all($where = array(), $order = "id ASC", $limit = array("count" => 0, "start" => 0))
     {
-        return $this->db->where($where)->order_by($order)->get($this->tableName)->result();
+        $this->db->where($where)->order_by($order);
+
+        if(!empty($limit))
+            $this->db->limit($limit["count"], $limit["start"]);
+
+        return $this->db->get($this->tableName)->result();
     }
 
     public function add($data = array())
@@ -21,6 +26,13 @@ class Portfolio_model extends CI_Model
     
     public function get($where = array())
     {
+        return $this->db->where($where)->get($this->tableName)->row();
+    }
+
+    public function get_random($where = array()) {
+        $this->db->order_by("rand()");
+        $this->db->limit(1);
+
         return $this->db->where($where)->get($this->tableName)->row();
     }
     
