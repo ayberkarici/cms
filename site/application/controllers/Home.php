@@ -5,6 +5,8 @@ class Home  extends CI_Controller {
         
         parent::__construct();
         $this->viewFolder = "homepage";
+        $this->load->helper("text");
+
 
     }
     public function index() {
@@ -14,7 +16,6 @@ class Home  extends CI_Controller {
     }
 
     public function product_list() {
-        $this->load->helper("text");
         $this->load->helper("tools");
         $this->load->model("product_model");
         $viewData = new stdClass();
@@ -28,7 +29,6 @@ class Home  extends CI_Controller {
     }
 
     public function product_detail($url= "") {
-        $this->load->helper("text");
         $this->load->helper("tools");
         $this->load->model("product_model");
         $viewData = new stdClass();
@@ -54,7 +54,6 @@ class Home  extends CI_Controller {
     }
 
     public function portfolio_list() {
-        $this->load->helper("text");
         $this->load->helper("tools");
         $this->load->model("portfolio_model");
 
@@ -73,7 +72,6 @@ class Home  extends CI_Controller {
     }
 
     public function portfolio_detail($url= "") {
-        $this->load->helper("text");
         $this->load->helper("tools");
         $this->load->model("portfolio_model");
         $this->load->model("portfolio_image_model");
@@ -110,5 +108,20 @@ class Home  extends CI_Controller {
 		
 		
 
+    }
+
+    public function course_list() {
+        $this->load->model("course_model");
+
+        $viewData = new stdClass();
+
+        $viewData->viewFolder = "course_list_v";
+        $viewData->courses = $this->course_model->get_all(
+            array(
+                "isActive" => 1,
+            ) , "id ASC, event_date ASC"
+        );
+
+        $this->load->view("course_list_v", $viewData);
     }
 }

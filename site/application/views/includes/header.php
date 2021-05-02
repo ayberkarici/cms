@@ -17,7 +17,7 @@
 
                     <!-- logo -->
                     <div id="logo" class="logo">
-                    <a href="index.html"><img id="logo_img" src="<?php echo base_url("assets/images") ?>/logo_purple.png" alt="The Project"></a>
+                    <a href="#"><img id="logo_img" src="<?php echo base_url("assets/images") ?>/logo_purple.png" alt="The Project"></a>
                     </div>
 
                     <!-- name-and-slogan -->
@@ -46,7 +46,7 @@
 
                             <!-- logo -->
                             <div id="logo-mobile" class="logo">
-                            <a href="index.html"><img id="logo-img-mobile" src="<?php echo base_url("assets/images") ?>/logo_purple.png" alt="The Project"></a>
+                            <a href="#"><img id="logo-img-mobile" src="<?php echo base_url("assets/images") ?>/logo_purple.png" alt="The Project"></a>
                             </div>
 
                             <!-- name-and-slogan -->
@@ -64,29 +64,29 @@
                             <!-- main-menu -->
                             <ul class="navbar-nav ml-xl-auto">
 
-                                <li class="active"><a href="index.html" class="nav-link">Ana sayfa</a></li>
+                                <li class="active"><a href="#" class="nav-link">Ana sayfa</a></li>
                             
                                 <li class="nav-item dropdown ">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Hakkımızda</a>
                                     <ul class="dropdown-menu">
-                                        <li ><a href="features-dark-page.html">Hakkımızda</a></li>
+                                        <li ><a href="#">Hakkımızda</a></li>
                                         <li ><a href="<?php echo base_url("portfolyo"); ?>">Portfolyo</a></li>
-                                        <li ><a href="features-dark-page.html">Haberler</a></li>
-                                        <li ><a href="features-dark-page.html">Referanslar</a></li>
+                                        <li ><a href="#">Haberler</a></li>
+                                        <li ><a href="#">Referanslar</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown ">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Galeriler</a>
                                     <ul class="dropdown-menu">
-                                        <li ><a href="features-dark-page.html">Resim Galerileri</a></li>
-                                        <li ><a href="features-dark-page.html">Video Galerileri</a></li>
-                                        <li ><a href="features-dark-page.html">Dosya Galerileri</a></li>
+                                        <li ><a href="#">Resim Galerileri</a></li>
+                                        <li ><a href="#">Video Galerileri</a></li>
+                                        <li ><a href="#">Dosya Galerileri</a></li>
                                     </ul>
                                 </li>
 
                                 <li class="active"><a href="<?php echo base_url("urunler"); ?>" class="nav-link">Ürünler</a></li>
-                                <li class="active"><a href="index.html" class="nav-link">Eğitimler</a></li>
-                                <li class="active"><a href="index.html" class="nav-link">Markalar</a></li>
+                                <li class="active"><a href="<?php echo base_url("egitim"); ?>" class="nav-link">Eğitimler</a></li>
+                                <li class="active"><a href="#" class="nav-link">Markalar</a></li>
                             </ul>
                             <!-- main-menu end -->
                         </div>
@@ -100,7 +100,7 @@
                 <div class="col-auto hidden-md-down pl-0 pl-md-1">
                 <!-- header dropdown buttons -->
                 <div class="header-dropdown-buttons">
-                    <a href="page-contact.html" class="btn btn-sm btn-default">İletişim<i class="fa fa-envelope-o pl-1"></i></a>
+                    <a href="#" class="btn btn-sm btn-default">İletişim<i class="fa fa-envelope-o pl-1"></i></a>
                 </div>
                 <!-- header dropdown buttons end-->
             </div>
