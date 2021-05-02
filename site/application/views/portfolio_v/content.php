@@ -5,43 +5,42 @@
 
 <div class="container">
     <div class="row">
-
-    <div class="col-12">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs style-1" role="tablist">
-        <li class="nav-item"><a class="nav-link active" ><i class="fa fa-image pr-1"></i> Resimler</a></li>
-        </ul>
-        <div class="block clearfix">
-            <div id="carousel-portfolio-sidebar" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <?php 
+      <!-- banner start -->
+      <!-- ================ -->
+      <div class="col-12 pv-40 banner light-gray-bg">
+          <!-- slideshow start -->
+          <!-- ================ -->
+        <div class="slideshow">
+            <!-- slider revolution start -->
+            <!-- ================ -->
+            <div class="slider-revolution-5-container">
+              <div id="slider-banner-boxedwidth" class="slider-banner-boxedwidth rev_slider" data-version="5.0">
+                <ul class="slides">
+                    <?php if(!empty($portfolio_item_image)){ ?>
+                    <!-- ================ -->
+                    <?php 
                     $i = 0;
                     foreach ($portfolio_item_image  as $portfolio_image) { ?>
-                    <li data-target="#carousel-portfolio-sidebar" data-slide-to="<?php echo $i ?>" class="<?php echo ($i == 0) ? "active" : ""; ?>"></li>
-                <?php $i++; } ?>
-            </ol>
-
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                
-                <?php 
-                    $i = 0;
-                    foreach ($portfolio_item_image  as $portfolio_image) { ?>
-                    <div class="carousel-item <?php echo ($i == 0) ? "active" : "" ;  ?>">
-                        <div class="image-box shadow text-center mb-20">
-                            <div class="overlay-container">
-                                <img src="<?php echo base_url("uploads/portfolio_v/$portfolio_image->img_url") ?>" alt="<?php echo $portfolio_image->img_url ?>">
-                            </div>
-                        </div>
-                    </div>
-                <?php $i++; } ?>
-
+                    <li class="text-center" data-transition="slidehorizontal" data-slotamount="default" data-masterspeed="default" data-title="">
+                    <!-- main image -->
+                        <img src="<?php echo base_url("uploads/portfolio_v/$portfolio_image->img_url") ?>" alt="<?php echo $portfolio_image->img_url ?>" data-bgposition="center top"  data-bgrepeat="no-repeat" data-bgfit="cover" class="rev-slidebg">
+                    </li>
+                    <?php $i++; } ?>
+                    <?php } else {; ?>
+                        <li class="text-center" data-transition="slidehorizontal" data-slotamount="default" data-masterspeed="default" data-title="">
+                            <!-- main image -->
+                            <img src="<?php echo base_url("assets/images/portfolio-1.jpg") ?>" alt="placeholder_img" data-bgposition="center top"  data-bgrepeat="no-repeat" data-bgfit="cover" class="rev-slidebg">
+                        </li>
+                    <?php } ?>
+                </ul>
+              </div>
             </div>
-            </div>
+            <!-- slider revolution end -->
         </div>
-    </div>
-    
+         <!-- slideshow end -->
+      </div>
+      <!-- banner end -->
+
     <div class="clearfix"></div>
 
     <!-- main start -->
@@ -50,9 +49,6 @@
         <h1 class="title"><?php echo $portfolio_item->title ?></h1>
         <div class="separator-2"></div>
         <p><?php echo $portfolio_item->description ?></p>
-    
-        
-
     </div>
     <!-- main end -->
 
@@ -68,11 +64,11 @@
             <li><strong>Tarih: </strong> <span class="text-right"><?php echo getReadableDate($portfolio_item->finishedAt) ?></span></li>
             <li><strong>Kategori: </strong> <span class="text-right"><?php echo get_category($portfolio_item->category_id) ?></span></li>
             <li><strong>Yer: </strong> <span class="text-right"><?php echo $portfolio_item->place ?></span></li>
-            <li><strong>URL: </strong> <span class="text-right"><a href="<?php echo "https://".$portfolio_item->portfolio_url ?>"><?php echo $portfolio_item->portfolio_url ?></a></span></li>
+            <li><strong>URL: </strong> <span class="text-right"><a href="<?php echo $portfolio_item->portfolio_url ?>"><?php echo $portfolio_item->portfolio_url ?></a></span></li>
             </ul>
         </div>
         <div class="block clearfix">
-            <h3 class="title">Diğer bir iyi iş</h3>
+            <h3 class="title">Diğer bir <b>iyi iş</b></h3>
             <div class="separator-2"></div>
             <div id="carousel-portfolio-sidebar" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
@@ -86,10 +82,12 @@
 
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
-                
+
+                <?php if(!empty($portfolio_aside_images)){ ?>
+                <!-- ================ -->
                 <?php 
-                    $i = 0;
-                    foreach ($portfolio_aside_images  as $aside_image) { ?>
+                $i = 0;
+                foreach ($portfolio_aside_images  as $aside_image) { ?>
                     <div class="carousel-item <?php echo ($i == 0) ? "active" : "" ;  ?>">
                         <div class="image-box shadow text-center mb-20">
                             <div class="overlay-container">
@@ -101,6 +99,18 @@
                         </div>
                     </div>
                 <?php $i++; } ?>
+                <?php } else {; ?>
+                    <div class="carousel-item <?php echo ($i == 0) ? "active" : "" ;  ?>">
+                        <div class="image-box shadow text-center mb-20">
+                            <div class="overlay-container">
+                            <img src="<?php echo base_url("assets/images/portfolio-1.jpg") ?>" alt="placeholder_img">
+                            <a href="<?php echo base_url("assets/images/portfolio-1.jpg") ?>" class="overlay-link">
+                                <i class="fa fa-link"></i>
+                            </a>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
 
             </div>
         </div>

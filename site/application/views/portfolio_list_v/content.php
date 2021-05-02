@@ -35,10 +35,16 @@
                     <div class="col-md-6 col-lg-8 col-xl-9">
                     <div class="body">
                         <h3 class="title"><a href="portfolio-item.html"><?php echo $portfolio->title ?></a></h3>
-                        <p class="small mb-10"><i class="icon-calendar"></i> <?php echo getReadableDate($portfolio->finishedAt) ?> <i class="pl-10 icon-tag-1"></i> <?php echo get_category($portfolio->category_id)?></p>
+                        <p class="small mb-10"><i class="icon-calendar"></i> <?php echo getReadableDate($portfolio->finishedAt) ?> <i class="pl-10 icon-tag-1">
+                        <?php
+                            $category = get_category($portfolio->category_id); 
+                            if($category):?>
+                        </i> <?php echo $category?>
+                        <?php endif; ?>
+                        </p>
                         <div class="separator-2"></div>
-                        <p class="mb-10"><?php echo $portfolio->description ?> </p>
-                        <a href="<?php echo base_url("portfolyo-detay/$portfolio->url"); ?>" class="btn btn-animated btn-default">Daha Fazlasını gör <i class="fa fa-arrow-right"></i></a>
+                        <p class="mb-10"><?php echo strip_tags($portfolio->description) ?> </p>
+                        <a href="<?php echo base_url("portfolyo-detay/$portfolio->url"); ?>" class="btn btn-animated btn-default">Görüntüle <i class="fa fa-arrow-right"></i></a>
                     </div>
                     </div>
                 </div>

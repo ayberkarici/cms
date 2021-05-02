@@ -30,4 +30,9 @@
 <!-- Initialization of Plugins -->
 <script type="text/javascript" src="<?php echo base_url("assets") ?>/js/template.js"></script>
 <!-- Custom Scripts -->
+
+<script type="text/javascript" src="<?php echo base_url("assets"); ?>/plugins/rs-plugin-5/js/extensions/revolution.extension.slideanims.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url("assets"); ?>/plugins/rs-plugin-5/js/extensions/revolution.extension.layeranimation.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url("assets"); ?>/plugins/rs-plugin-5/js/extensions/revolution.extension.navigation.min.js"></script>
+
 <script type="text/javascript" src="<?php echo base_url("assets") ?>/js/custom.js"></script>

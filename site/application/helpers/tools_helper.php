@@ -63,6 +63,7 @@ function get_sub_images($product_id) {
 }
 
 function getReadableDate($data) {
+    setlocale(LC_TIME, 'tr_TR.UTF-8');
     return strftime('%e %B %Y', strtotime($data));
 
 }
@@ -77,5 +78,5 @@ function get_category($category_id){
             "id" => $category_id
     ));
 
-    return $categoryName->title;
+    return (empty($categoryName)) ? false : $categoryName->title ;
 } 
