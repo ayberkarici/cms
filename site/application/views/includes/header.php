@@ -72,7 +72,7 @@
                                         <li ><a href="#">Hakkımızda</a></li>
                                         <li ><a href="<?php echo base_url("portfolyo"); ?>">Portfolyo</a></li>
                                         <li ><a href="#">Haberler</a></li>
-                                        <li ><a href="#">Referanslar</a></li>
+                                        <li ><a href="<?php echo base_url("referanslar"); ?>">Referanslar</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown ">

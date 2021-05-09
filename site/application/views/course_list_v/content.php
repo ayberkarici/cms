@@ -12,28 +12,29 @@
 
         <!-- page-title start -->
         <!-- ================ -->
-        <h1 class="page-title">Eğitimlerimiz</h1>
+        <h1 class="page-title">Eğitim Listesi</h1>
         <div class="separator-2"></div>
         <!-- page-title end -->
-        <p class="lead">Aşağıda sizin için seçtiğimiz bazı eğitimlerimiz yer almakta.</p>
+        <p class="lead">Aşağıda bazı eğitimlerimizi görebilirsiniz.</p>
         <?php foreach($courses as $course){ ?>
             <div class="image-box style-3-b">
                 <div class="row">
                     <div class="col-md-6 col-lg-4 col-xl-3">
                     <div class="overlay-container">
-                        <img src='<?php echo base_url("uploads/courses_v/$course->img_url"); ?>' alt='<?php echo $course->url; ?>'>
+                    
+                        <img height="400px" src='<?php echo base_url("uploads/courses_v/$course->img_url"); ?>' alt='<?php echo $course->title; ?>'>
                         <div class="overlay-to-top">
                         <p class="small margin-clear"><em><?php echo $course->title ?></em></p>
                         </div>
+
                     </div>
                     </div>
                     <div class="col-md-6 col-lg-8 col-xl-9">
                     <div class="body">
-                        <h3 class="title"><a href="course-item.html"><?php echo $course->title ?></a></h3>
-                        <p class="small mb-10"><i class="icon-calendar"></i> <?php echo getReadableDate($course->event_date) ?> 
-                        </p>
+                        <h3 class="title"><a href="portfolio-item.html"><?php echo $course->title ?></a></h3>
+                        <p class="small mb-10"><i class="icon-calendar"></i> <?php echo getReadableDate($course->event_date) ?></p>
                         <div class="separator-2"></div>
-                        <p class="mb-10"><?php echo character_limiter(strip_tags($course->description), 100) ?> </p>
+                        <p class="mb-10"><?php echo character_limiter(strip_tags($course->description), 400) ?> </p>
                         <a href="<?php echo base_url("egitim-detay/$course->url"); ?>" class="btn btn-animated btn-default">Görüntüle <i class="fa fa-arrow-right"></i></a>
                     </div>
                     </div>

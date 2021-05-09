@@ -88,18 +88,21 @@ class Home  extends CI_Controller {
         );
         $viewData->rand_diff_item = $this->portfolio_model->get_random(
             array(
+                "isActive" => 1,
                 "id !="   => $viewData->portfolio_item->id
             )
         );
 
         $viewData->portfolio_aside_images = $this->portfolio_image_model->get_all(
             array(
+                "isActive"  => 1,
                 "portfolio_id" => $viewData->rand_diff_item->id
             )
         );
 
         $viewData->portfolio_item_image = $this->portfolio_image_model->get_all(
             array(
+                "isActive"  => 1,
                 "portfolio_id" => $viewData->portfolio_item->id
             )
         );
@@ -110,18 +113,58 @@ class Home  extends CI_Controller {
 
     }
 
-    public function course_list() {
+    public function course_list(){
+        $viewData = new stdClass();
+        $viewData->viewFolder = "course_list_v";
+        
+        $this->load->model("course_model");
+
+        $viewData->courses = $this->course_model->get_all(
+            array(
+                "isActive" => 1
+            ) , "rank ASC, event_date ASC"
+        );
+
+		$this->load->view("course_list_v", $viewData);
+
+    }
+
+    public function course_detail($url) {  
+        $this->load->helper("tools");
         $this->load->model("course_model");
 
         $viewData = new stdClass();
+        
+        $viewData->viewFolder = "course_v";
 
-        $viewData->viewFolder = "course_list_v";
-        $viewData->courses = $this->course_model->get_all(
+        $viewData->course_item = $this->course_model->get(
             array(
-                "isActive" => 1,
-            ) , "id ASC, event_date ASC"
+                "isActive"  => 1,
+                "url"       => $url
+            )
+        );
+        $viewData->rand_diff_item = $this->course_model->get(
+            array(
+                "isActive"  => 1,
+                "id !="   => $viewData->course_item->id
+            ), "rand()"
         );
 
-        $this->load->view("course_list_v", $viewData);
+		$this->load->view($viewData->viewFolder, $viewData);
+    }
+
+    public function reference_list(){
+
+        $viewData = new stdClass();
+        $viewData->viewFolder = "reference_list_v";
+        $this->load->model("reference_model");
+        $viewData->references = $this->reference_model->get_all(
+            array(
+                "isActive" => 1,
+            ), "rank ASC"
+        );
+
+        $this->load->view($viewData->viewFolder, $viewData);
+
     }
 }

@@ -59,7 +59,7 @@
             <h3 class="title"><?php echo $portfolio_item->title ?></h3>
             <div class="separator-2"></div>
             <ul class="list margin-clear">
-            <li><strong>Müşter: </strong> <span class="text-right"><?php echo $portfolio_item->client ?></span></li>
+            <li><strong>Müşteri: </strong> <span class="text-right"><?php echo $portfolio_item->client ?></span></li>
             <li><strong>Tarih: </strong> <span class="text-right"><?php echo getReadableDate($portfolio_item->finishedAt) ?></span></li>
             <li><strong>Kategori: </strong> <span class="text-right"><?php echo get_category($portfolio_item->category_id) ?></span></li>
             <li><strong>Yer: </strong> <span class="text-right"><?php echo $portfolio_item->place ?></span></li>
