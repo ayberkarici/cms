@@ -68,3 +68,5 @@ $route["markalar"] = "home/brand_list";
 
 $route["hizmetler"] = "home/service_list";
 
+$route["hakkimizda"] = "home/about_us";
+

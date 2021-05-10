@@ -199,4 +199,17 @@ class Home  extends CI_Controller {
         $this->load->view($viewData->viewFolder, $viewData);
 
     }
+
+    public function about_us(){
+
+        $viewData = new stdClass();
+
+        $viewData->viewFolder = "about_v";
+        $this->load->model("settings_model");
+        $viewData->settings = $this->settings_model->get();
+
+        $this->load->view($viewData->viewFolder, $viewData);
+
+    }
 }
+
