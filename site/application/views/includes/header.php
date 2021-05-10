@@ -73,6 +73,7 @@
                                         <li ><a href="<?php echo base_url("portfolyo"); ?>">Portfolyo</a></li>
                                         <li ><a href="#">Haberler</a></li>
                                         <li ><a href="<?php echo base_url("referanslar"); ?>">Referanslar</a></li>
+                                        <li ><a href="<?php echo base_url("hizmetler"); ?>">Hizmetlerimiz</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown ">
@@ -86,7 +87,7 @@
 
                                 <li class="active"><a href="<?php echo base_url("urunler"); ?>" class="nav-link">Ürünler</a></li>
                                 <li class="active"><a href="<?php echo base_url("egitim"); ?>" class="nav-link">Eğitimler</a></li>
-                                <li class="active"><a href="#" class="nav-link">Markalar</a></li>
+                                <li class="active"><a href="<?php echo base_url("markalar"); ?>" class="nav-link">Markalar</a></li>
                             </ul>
                             <!-- main-menu end -->
                         </div>
