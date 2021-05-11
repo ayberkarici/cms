@@ -13,23 +13,23 @@
 <div class="row">
     <div class="form-group col-md-4">
         <label>Facebook</label>
-        <input class="form-control" placeholder="Facebook adresiniz" name="facebook" >
+        <input class="form-control" placeholder="Facebook adresiniz" name="facebook" value="<?php echo (isset($form_error)) ? set_value("facebook") : "" ;  ?>">
     </div>
     <div class="form-group col-md-4">
         <label>Twitter</label>
-        <input class="form-control" placeholder="Twitter adresiniz" name="twitter" >
+        <input class="form-control" placeholder="Twitter adresiniz" name="twitter" value="<?php echo (isset($form_error)) ? set_value("twitter") : "" ;  ?>">
 
     </div>
 </div>
 <div class="row">
     <div class="form-group col-md-4">
         <label>İnstagram</label>
-        <input class="form-control" placeholder="İnstagram adresiniz" name="instagram" >
+        <input class="form-control" placeholder="İnstagram adresiniz" name="instagram" value="<?php echo (isset($form_error)) ? set_value("instagram") : "" ;  ?>">
 
     </div>
     <div class="form-group col-md-4">
         <label>Linkedin</label>
-        <input class="form-control" placeholder="Linkedin adresiniz" name="linkedin" >
+        <input class="form-control" placeholder="Linkedin adresiniz" name="linkedin" value="<?php echo (isset($form_error)) ? set_value("linkedin") : "" ;  ?>">
 
     </div>
 </div>
