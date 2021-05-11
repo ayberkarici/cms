@@ -6,12 +6,11 @@ class Home  extends CI_Controller {
         parent::__construct();
         $this->viewFolder = "homepage";
         $this->load->helper("text");
-
-
+        
+        
     }
     public function index() {
         // Ana sayfa
-
         echo $this->viewFolder;
     }
 
