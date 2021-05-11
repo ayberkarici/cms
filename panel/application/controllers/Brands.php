@@ -52,18 +52,9 @@ class Brands extends CI_Controller {
 		// Kurallar yazılır
 
 		if($_FILES['img_url']['name'] == "") {
-			$alert = array(
-				'title' => "İşlem Başarısız.",
-				'type' 	=> "error",
-				'text'	=> "Lütfen bir görsel seçiniz"
-			);
 			
-			$this->session->set_flashdata("alert", $alert);
-			$this->form_validation->set_rules("img_url","image URL","required");
+			$this->form_validation->set_rules("img_url","Görsel","required");
 
-			redirect(base_url("brands/new_form"));
-
-			die();
 		};
 
 		$this->form_validation->set_rules("title","Başlık","required|trim");
@@ -75,64 +66,67 @@ class Brands extends CI_Controller {
 		);
 
 		// Form validation çalıştırılır
+		
 		$validate = $this->form_validation->run();
-
+		
 		if ($validate) {
-			// Upload süreci
+			if($_FILES['img_url']['name'] != "") {
+					// Upload süreci
 
-			$file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)).".".pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
+				$file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)).".".pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
 
-			$config['allowed_types'] = "jpg|jpeg|png";
-			$config['upload_path'] = "uploads/$this->viewFolder/";
-			$config['file_name'] = $file_name;
-	
-			$this->load->library("upload", $config);
-	
-			$upload = $this->upload->do_upload("img_url");
-	
-			if($upload) {
-				$uploaded_file = $this->upload->data("file_name"); 
+				$config['allowed_types'] = "jpg|jpeg|png";
+				$config['upload_path'] = "uploads/$this->viewFolder/";
+				$config['file_name'] = $file_name;
+		
+				$this->load->library("upload", $config);
+		
+				$upload = $this->upload->do_upload("img_url");
+		
+				if($upload) {
+					$uploaded_file = $this->upload->data("file_name"); 
 
-				$insert = $this->brand_model->add(
-					array(
-						"title"			=> $this->input->post("title"),
-						"img_url"		=> $uploaded_file,
-						"rank"			=> 0,
-						"isActive"		=> 1,
-						"createdAt"		=> date("Y-m-d H:i:s")
-					)
-				);
-			
-				if($insert) {
-					$alert = array(
-						'title' => "İşlem Başarılı!",
-						'type' 	=> "success",
-						'text'	=> "Ürün başarıyla veritabanına kaydedildi"
+					$insert = $this->brand_model->add(
+						array(
+							"title"			=> $this->input->post("title"),
+							"img_url"		=> $uploaded_file,
+							"rank"			=> 0,
+							"isActive"		=> 1,
+							"createdAt"		=> date("Y-m-d H:i:s")
+						)
 					);
+				
+					if($insert) {
+						$alert = array(
+							'title' => "İşlem Başarılı!",
+							'type' 	=> "success",
+							'text'	=> "Ürün başarıyla veritabanına kaydedildi"
+						);
+					} else {
+						$alert = array(
+							'title' => "İşlem Başarısız.",
+							'type' 	=> "error",
+							'text'	=> "Ürün kaydedilemedi"
+						);
+					};
 				} else {
 					$alert = array(
 						'title' => "İşlem Başarısız.",
 						'type' 	=> "error",
-						'text'	=> "Ürün kaydedilemedi"
+						'text'	=> "Görsel yüklenirken bir hata oluştu"
 					);
-				};
-			} else {
-				$alert = array(
-					'title' => "İşlem Başarısız.",
-					'type' 	=> "error",
-					'text'	=> "Görsel yüklenirken bir hata oluştu"
-				);
-			
+				
+					$this->session->set_flashdata("alert", $alert);
+					
+					redirect(base_url("brands/new_form"));
+
+					die();
+				}
+				
 				$this->session->set_flashdata("alert", $alert);
 				
-				redirect(base_url("brands/new_form"));
-
-				die();
+				redirect(base_url("brands"));			
 			}
-			
-			$this->session->set_flashdata("alert", $alert);
-			
-			redirect(base_url("brands"));			
 		} else {
 			$viewData = new stdClass();
 

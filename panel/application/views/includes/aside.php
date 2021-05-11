@@ -115,7 +115,7 @@
         <li>
           <a href="<?php echo base_url('services') ?>">
             <i class="menu-icon fa fa-anchor"></i>
-            <span class="menu-text">Hizmetlerimiz</span>
+            <span class="menu-text">Hizmetler</span>
           </a>
         </li>
         

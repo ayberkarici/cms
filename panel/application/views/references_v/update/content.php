@@ -24,8 +24,10 @@
                         </textarea>
                     </div>
                         <div class="row image_upload_container">
-                            <div class="col-md-3 " style="padding:1rem !important;">
-                                <img src="<?php echo base_url("uploads/$viewFolder/$item->img_url") ?>"  width="230" class="img-responsive  ">
+                            <div class="col-md-3 text-center" style="padding:1rem !important;">
+                                <img src="<?php echo base_url("uploads/$viewFolder/$item->img_url") ?>"  width="330" class="img-responsive img-thumbnail ">
+                                <br>
+                                <small class=" text-purple text-lowercase ">(Mevcut mükemmel görseliniz)</small>
                             </div>
                             <div class="form-group col-md-9">
                                 <label>Görsel seçiniz</label>

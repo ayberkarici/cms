@@ -28,13 +28,18 @@
                             <label for="datetimepicker1">Eğitim Tarihi</label>
                             <input type="hidden" name="event_date" id="datetimepicker1" data-plugin="datetimepicker" data-options="{ inline: true, viewMode: 'days', format:'YYYY-MM-DD HH:mm:ss' }">
                         </div>
-                        <div class="col-md-2 " style="padding:1rem !important;">
-                            <img src="<?php echo base_url("uploads/$viewFolder/$item->img_url") ?>"  width="230" class="img-responsive  ">
-                        </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-8">
                             <label>Görsel seçiniz</label>
                             <input type="file" class="form-control" name="img_url" >
+                            <br>
+                            <div class="col-md-4 text-center">
+                                <img src="<?php echo base_url("uploads/$viewFolder/$item->img_url") ?>"  width="330" class="img-responsive img-thumbnail ">
+                                <br>
+                                <small class=" text-purple text-lowercase ">(Mevcut mükemmel görseliniz)</small>
+                            </div>
                         </div>
+                        
+                        
                     </div>
                     <button type="submit" class="btn btn-primary btn-outline btn-md"><i class="fa fa-rocket"></i> Güncelle</button>
                     <a href="<?php echo base_url("courses"); ?>" class="btn btn-danger btn-outline btn-md"><i class="fa fa-remove "></i> İptal</a>

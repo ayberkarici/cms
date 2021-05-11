@@ -51,18 +51,7 @@ class Services extends CI_Controller {
 		// Kurallar yazılır
 
 		if($_FILES['img_url']['name'] == "") {
-			$alert = array(
-				'title' => "İşlem Başarısız.",
-				'type' 	=> "error",
-				'text'	=> "Lütfen bir görsel seçiniz"
-			);
-			
-			$this->session->set_flashdata("alert", $alert);
-			$this->form_validation->set_rules("img_url","image URL","required");
-
-			redirect(base_url("services/new_form"));
-
-			die();
+			$this->form_validation->set_rules("img_url","Görsel","required");
 		};
 
 		$this->form_validation->set_rules("title","Başlık","required|trim");
@@ -77,64 +66,67 @@ class Services extends CI_Controller {
 		$validate = $this->form_validation->run();
 
 		if ($validate) {
-			// Upload süreci
+			if($_FILES['img_url']['name'] != "") {
 
-			$file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)).".".pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
+				// Upload süreci
 
-			$config['allowed_types'] = "jpg|jpeg|png";
-			$config['upload_path'] = "uploads/$this->viewFolder/";
-			$config['file_name'] = $file_name;
-	
-			$this->load->library("upload", $config);
-	
-			$upload = $this->upload->do_upload("img_url");
-	
-			if($upload) {
-				$uploaded_file = $this->upload->data("file_name"); 
+				$file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)).".".pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
 
-				$insert = $this->service_model->add(
-					array(
-						"title"			=> $this->input->post("title"),
-						"description"	=> $this->input->post("description"),
-						"url"			=> convertToSEO($this->input->post("title")),
-						"img_url"		=> $uploaded_file,
-						"rank"			=> 0,
-						"isActive"		=> 1,
-						"createdAt"		=> date("Y-m-d H:i:s"),
-						"changedAt"		=> date("Y-m-d H:i:s")
-					)
-				);
-			
-				if($insert) {
-					$alert = array(
-						'title' => "İşlem Başarılı!",
-						'type' 	=> "success",
-						'text'	=> "Ürün başarıyla veritabanına kaydedildi"
+				$config['allowed_types'] = "jpg|jpeg|png";
+				$config['upload_path'] = "uploads/$this->viewFolder/";
+				$config['file_name'] = $file_name;
+		
+				$this->load->library("upload", $config);
+		
+				$upload = $this->upload->do_upload("img_url");
+		
+				if($upload) {
+					$uploaded_file = $this->upload->data("file_name"); 
+
+					$insert = $this->service_model->add(
+						array(
+							"title"			=> $this->input->post("title"),
+							"description"	=> $this->input->post("description"),
+							"url"			=> convertToSEO($this->input->post("title")),
+							"img_url"		=> $uploaded_file,
+							"rank"			=> 0,
+							"isActive"		=> 1,
+							"createdAt"		=> date("Y-m-d H:i:s"),
+							"changedAt"		=> date("Y-m-d H:i:s")
+						)
 					);
+				
+					if($insert) {
+						$alert = array(
+							'title' => "İşlem Başarılı!",
+							'type' 	=> "success",
+							'text'	=> "Ürün başarıyla veritabanına kaydedildi"
+						);
+					} else {
+						$alert = array(
+							'title' => "İşlem Başarısız.",
+							'type' 	=> "error",
+							'text'	=> "Ürün kaydedilemedi"
+						);
+					};
 				} else {
 					$alert = array(
 						'title' => "İşlem Başarısız.",
 						'type' 	=> "error",
-						'text'	=> "Ürün kaydedilemedi"
+						'text'	=> "Görsel yüklenirken bir hata oluştu"
 					);
-				};
-			} else {
-				$alert = array(
-					'title' => "İşlem Başarısız.",
-					'type' 	=> "error",
-					'text'	=> "Görsel yüklenirken bir hata oluştu"
-				);
-			
+				
+					$this->session->set_flashdata("alert", $alert);
+					
+					redirect(base_url("services/new_form"));
+
+					die();
+				}
+				
 				$this->session->set_flashdata("alert", $alert);
 				
-				redirect(base_url("services/new_form"));
-
-				die();
-			}
-			
-			$this->session->set_flashdata("alert", $alert);
-			
-			redirect(base_url("services"));			
+				redirect(base_url("services"));			
+			};
 		} else {
 			$viewData = new stdClass();
 

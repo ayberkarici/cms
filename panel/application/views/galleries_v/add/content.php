@@ -10,9 +10,9 @@
             <div class="widget-body">
 
                 <form action="<?php echo base_url("galleries/save"); ?>" method="post">
-                    <div class="form-group <?php echo (isset($form_error)) ? "has-error" : ""; ?>">
+                    <div class="form-group" >
                         <label>Başlık giriniz</label>
-                        <input class="form-control" placeholder="Galerinin adını giriniz" name="title">
+                        <input class="form-control" placeholder="Galerinin adını giriniz" name="title" value="<?php echo (isset($form_error)) ? set_value("title") : "" ;  ?>">
                         <?php if(isset($form_error)): ?>
                             <small class="input-form-error"><?php echo form_error("title") ?></small>
                         <?php endif; ?>

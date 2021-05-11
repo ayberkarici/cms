@@ -10,7 +10,7 @@
             <div class="widget-body">
 
                 <form action="<?php echo base_url("services/update/$item->id"); ?>" method="post" enctype="multipart/form-data">
-                    <div class="form-group <?php echo (isset($form_error)) ? "has-error" : ""; ?>">
+                    <div class="form-group">
                         <label>Başlık</label>
                         <input class="form-control" placeholder="Başlık" name="title" value="<?php echo $item->title; ?>">
                         <?php if(isset($form_error)): ?>
@@ -24,8 +24,10 @@
                         </textarea>
                     </div>
                         <div class="row image_upload_container">
-                            <div class="col-md-3 " style="padding:1rem !important;">
-                                <img src="<?php echo base_url("uploads/$viewFolder/$item->img_url") ?>"  width="230" class="img-responsive  ">
+                            <div class="col-md-3 text-center" style="padding:1rem !important;">
+                                <img src="<?php echo base_url("uploads/$viewFolder/$item->img_url") ?>"  width="330" class="img-responsive img-thumbnail ">
+                                <br>
+                                <small class=" text-purple text-lowercase ">(Mevcut mükemmel görseliniz)</small>
                             </div>
                             <div class="form-group col-md-9">
                                 <label>Görsel seçiniz</label>

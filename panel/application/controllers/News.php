@@ -16,6 +16,8 @@ class News extends CI_Controller {
 		if(!get_active_user()){
 			redirect(base_url("login"));
 		}
+
+		//$this->session->set_userdata("page_title", "Haberler");
 	}
 
 	public function index()
@@ -54,30 +56,14 @@ class News extends CI_Controller {
 		
 		if ($news_type == "image") {
 			if($_FILES['img_url']['name'] == "") {
-				$alert = array(
-					'title' => "İşlem Başarısız.",
-					'type' 	=> "error",
-					'text'	=> "Lütfen bir görsel seçiniz"
-				);
-				
-				$this->session->set_flashdata("alert", $alert);
-				$this->form_validation->set_rules("img_url","image URL","required");
+				$this->form_validation->set_rules("img_url","Resim","required");
 			};
-
 		} else if ($news_type == "video") {
-			$this->form_validation->set_rules("video_url","video URL","required|trim");
-			
-
-			$alert = array(
-				'title' => "İşlem Başarısız.",
-				'type' 	=> "error",
-				'text'	=> "Lütfen bir video bağlantısı yapıştırın"
-			);
-			
-			$this->session->set_flashdata("alert", $alert);
+			$this->form_validation->set_rules("video_url","Video","required|trim");
 		}
 
 		$this->form_validation->set_rules("title","Başlık","required|trim");
+		$this->form_validation->set_rules("description","Açıklama","required|trim");
 
 		$this->form_validation->set_message(
 			array(
@@ -206,6 +192,7 @@ class News extends CI_Controller {
 		}
 
 		$this->form_validation->set_rules("title","Başlık","required|trim");
+		$this->form_validation->set_rules("description","Açıklama","required|trim");
 
 		$this->form_validation->set_message(
 			array(

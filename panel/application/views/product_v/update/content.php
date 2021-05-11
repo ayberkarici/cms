@@ -10,7 +10,7 @@
             <div class="widget-body">
 
                 <form action="<?php echo base_url("product/update/$item->id"); ?>" method="post">
-                    <div class="form-group <?php echo (isset($form_error)) ? "has-error" : ""; ?>">
+                    <div class="form-group">
                         <label>Başlık giriniz</label>
                         <input class="form-control" placeholder="Başlık" name="title" value="<?php echo $item->title; ?>">
                         <?php if(isset($form_error)): ?>

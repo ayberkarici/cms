@@ -8,18 +8,23 @@
     <div class="col-md-12">
         <div class="widget">
             <div class="widget-body">
-
+            <?php // echo (null !== set_value("title")) ? "" : "has-error" ;?>
                 <form action="<?php echo base_url("news/save"); ?>" method="post" enctype="multipart/form-data">
-                    <div class="form-group <?php echo (isset($form_error)) ? "has-error" : ""; ?>">
+                    <div class="form-group ">
                         <label>Başlık giriniz</label>
-                        <input class="form-control" placeholder="Başlık" name="title">
+                        <input class="form-control" placeholder="Başlık" name="title" value="<?php echo (isset($form_error)) ? set_value("title") : "" ;  ?>">
                         <?php if(isset($form_error)): ?>
                             <small class="input-form-error"><?php echo form_error("title") ?></small>
                         <?php endif; ?>
                     </div>
                     <div class="form-group">
                         <label >Açıklama</label>
-                        <textarea class="m-0" name="description" data-plugin="summernote" data-options="{height: 250}"></textarea>
+                        <textarea class="m-0" name="description" data-plugin="summernote" data-options="{height: 250}">
+                            <?php echo (isset($form_error)) ? set_value("description") : "" ;  ?>
+                        </textarea>
+                        <?php if(isset($form_error)): ?>
+                            <small class="input-form-error"><?php echo form_error("description") ?></small>
+                        <?php endif; ?>
                     </div>
 
                     <div class="form-group">
@@ -33,15 +38,18 @@
 					</div><!-- .form-group -->
 
                     <?php if(isset($form_error)) { ?>
-                        <div class="form-group image_upload_container <?php echo (form_error("img_url")) ? "has-error" : ""; ?>" style="display: <?php echo ($news_type == "image") ? "block" : "none";  ?>;">
+                        <div class="form-group image_upload_container" style="display: <?php echo ($news_type == "image") ? "block" : "none";  ?>;">
                             <label>Görsel seçiniz</label>
                             <input type="file" class="form-control" name="img_url">
+                            <?php if(isset($form_error)): ?>
+                                <small class="input-form-error"><?php echo form_error("img_url") ?></small>
+                            <?php endif; ?>
                         </div>
-                        <div class="form-group  video_url_container <?php echo (form_error("video_url")) ? "has-error" : ""; ?>" style="display: <?php echo ($news_type == "video") ? "block" : "none";  ?>;">
+                        <div class="form-group  video_url_container" style="display: <?php echo ($news_type == "video") ? "block" : "none";  ?>;">
                             <label>Video URL</label>
                             <input class="form-control" placeholder="Video bağlantısını buraya yapıştırınız" name="video_url">
                             <?php if(isset($form_error)): ?>
-                            <small class="input-form-error"><?php echo form_error("video_url") ?></small>
+                                <small class="input-form-error"><?php echo form_error("video_url") ?></small>
                             <?php endif; ?>
                         </div>
                     <?php } else {  ?>
@@ -50,10 +58,12 @@
                             <input type="file" class="form-control" name="img_url">
                         </div>
 
-                        <div class="form-group  video_url_container <?php echo (isset($form_error)) ? "has-error" : ""; ?>">
+                        <div class="form-group  video_url_container ">
                             <label>Video URL</label>
                             <input class="form-control" placeholder="Video bağlantısını buyara yapıştırınız" name="video_url">
                         </div>
+
+                        
                     <?php }?>
 
 
