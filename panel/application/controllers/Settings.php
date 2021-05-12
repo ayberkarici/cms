@@ -17,6 +17,7 @@ class Settings extends CI_Controller {
 			redirect(base_url("login"));
 		}
 		
+		page_title("Ayarlar");
 	}
 
 	public function index(){

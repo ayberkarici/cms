@@ -99,3 +99,10 @@ function get_category_title($category_id = 0) {
     else 
         return "Tanımlı değil"; 
 }
+
+function page_title($sectionTitle = "") {
+
+    $t = &get_instance();
+    $t->session->set_userdata("section_title", $sectionTitle);    
+
+}

@@ -17,7 +17,8 @@ class News extends CI_Controller {
 			redirect(base_url("login"));
 		}
 
-		//$this->session->set_userdata("page_title", "Haberler");
+		page_title("Haberler");
+
 	}
 
 	public function index()

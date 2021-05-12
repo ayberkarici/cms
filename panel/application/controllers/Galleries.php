@@ -19,6 +19,9 @@ class Galleries extends CI_Controller {
 		if(!get_active_user()){
 			redirect(base_url("login"));
 		}
+
+		page_title("Galeriler");
+
 	}
 	public function index(){
         $viewData = new stdClass();

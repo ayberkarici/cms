@@ -16,6 +16,8 @@ class Users extends CI_Controller {
 		if(!get_active_user()){
 			redirect(base_url("login"));
 		}
+
+		page_title("Kullanıcılar");
 	}
 
 	public function index(){

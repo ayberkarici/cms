@@ -1,4 +1,8 @@
-<?php $settings = get_settings(); ?>
+<?php 
+$settings = get_settings(); 
+
+$page_title = $this->session->userdata("section_title");
+?>
 
 <nav id="app-navbar" class="navbar navbar-inverse navbar-fixed-top primary">
   
@@ -49,7 +53,7 @@
           </a>
         </li>
         <li>
-          <h5 class="page-title hidden-menubar-top hidden-float">Dashboard</h5>
+          <h5 class="page-title hidden-menubar-top hidden-float"><?php echo $page_title; ?></h5>
         </li>
       </ul>
 
