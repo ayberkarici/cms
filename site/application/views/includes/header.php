@@ -1,115 +1,117 @@
 <?php $settings = get_settings(); ?>
 
-
+<!-- header-container start -->
 <div class="header-container">
-<!-- header start -->
-<!-- classes:  -->
-<!-- "fixed": enables fixed navigation mode (sticky menu) e.g. class="header fixed clearfix" -->
-<!-- "fixed-desktop": enables fixed navigation only for desktop devices e.g. class="header fixed fixed-desktop clearfix" -->
-<!-- "fixed-all": enables fixed navigation only for all devices desktop and mobile e.g. class="header fixed fixed-desktop clearfix" -->
-<!-- "dark": dark version of header e.g. class="header dark clearfix" -->
-<!-- "centered": mandatory class for the centered logo layout -->
-<!-- ================ -->
-<header class="header dark clearfix fixed" >
-    <div class="container">
-        <div class="row">
-            <div class="col-md-auto hidden-md-down pl-3">
-                <!-- header-first start -->
-                <!-- ================ -->
-                <div class="header-first clearfix">
 
-                    <!-- logo -->
-                    <div id="logo" class="logo">
-                    <a href="#"><img id="logo_img" src="<?php echo base_url("assets/images") ?>/logo_purple.png" alt="The Project"></a>
-                    </div>
+    <!-- header start -->
+    <!-- classes:  -->
+    <!-- "fixed": enables fixed navigation mode (sticky menu) e.g. class="header fixed clearfix" -->
+    <!-- "dark": dark version of header e.g. class="header dark clearfix" -->
+    <!-- "full-width": mandatory class for the full-width menu layout -->
+    <!-- "centered": mandatory class for the centered logo layout -->
+    <!-- ================ -->
+    <header class="header  fixed   dark clearfix">
 
-                    <!-- name-and-slogan -->
-                    <div class="site-slogan">
-                    <?php echo $settings->slogan ?>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 ">
+                    <!-- header-first start -->
+                    <!-- ================ -->
+                    <div class="header-first clearfix">
+
+                        <!-- logo -->
+                        <div id="logo" class="logo">
+                            <a href="#"><img id="logo_img" src="<?php echo base_url("assets/images");?>/logo_purple.png" alt="The Project"></a>
+                        </div>
+
+                        <!-- name-and-slogan -->
+                        <div class="site-slogan">
+                            <?php echo $settings->slogan; ?>
+                        </div>
+
                     </div>
+                    <!-- header-first end -->
 
                 </div>
-                <!-- header-first end -->
+                <div class="col-md-10">
 
-            </div>
-            <div class="col-lg-8 ml-lg-auto">
-            
-                <!-- header-second start -->
-                <!-- ================ -->
-                <div class="header-second clearfix">
-                    
-                <!-- main-navigation start -->
-                <!-- classes: -->
-                <!-- "onclick": Makes the dropdowns open on click, this the default bootstrap behavior e.g. class="main-navigation onclick" -->
-                <!-- "animated": Enables animations on dropdowns opening e.g. class="main-navigation animated" -->
-                <!-- ================ -->
-                <div class="main-navigation main-navigation--mega-menu  animated">
-                    <nav class="navbar navbar-expand-lg navbar-light p-0">
-                        <div class="navbar-brand clearfix hidden-lg-up">
+                    <!-- header-second start -->
+                    <!-- ================ -->
+                    <div class="header-second clearfix">
 
-                            <!-- logo -->
-                            <div id="logo-mobile" class="logo">
-                            <a href="#"><img id="logo-img-mobile" src="<?php echo base_url("assets/images") ?>/logo_purple.png" alt="The Project"></a>
-                            </div>
+                        <!-- main-navigation start -->
+                        <!-- classes: -->
+                        <!-- "onclick": Makes the dropdowns open on click, this the default bootstrap behavior e.g. class="main-navigation onclick" -->
+                        <!-- "animated": Enables animations on dropdowns opening e.g. class="main-navigation animated" -->
+                        <!-- "with-dropdown-buttons": Mandatory class that adds extra space, to the main navigation, for the search and cart dropdowns -->
+                        <!-- ================ -->
+                        <div class="main-navigation  animated with-dropdown-buttons">
 
-                            <!-- name-and-slogan -->
-                            <div class="site-slogan">
-                            Multipurpose HTML5 Template
-                            </div>
+                            <!-- navbar start -->
+                            <!-- ================ -->
+                            <nav class="navbar navbar-default" role="navigation">
+                                <div class="container-fluid">
+
+                                    <!-- Toggle get grouped for better mobile display -->
+                                    <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+                                            <span class="sr-only">Toggle navigation</span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>
+
+                                    </div>
+
+                                    <!-- Collect the nav links, forms, and other content for toggling -->
+                                    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                                        <!-- main-menu -->
+                                        <ul class="nav navbar-nav ">
+
+
+                                            <li class="active"><a href="#">Anasayfa</a></li>
+                                            <li class="dropdown ">
+                                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Hakkımızda</a>
+                                                <ul class="dropdown-menu">
+                                                    <li ><a href="<?php echo base_url("hakkimizda"); ?>">Hakkımızda</a></li>
+                                                    <li ><a href="<?php echo base_url("portfolyo"); ?>">Portfolyo</a></li>
+                                                    <li ><a href="#">Haberler</a></li>
+                                                    <li ><a href="<?php echo base_url("referanslar"); ?>">Referanslar</a></li>
+                                                    <li ><a href="<?php echo base_url("hizmetler"); ?>">Hizmetlerimiz</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown ">
+                                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Galeriler</a>
+                                                <ul class="dropdown-menu">
+                                                    <li ><a href="#">Resim Galerileri</a></li>
+                                                    <li ><a href="#">Video Galerileri</a></li>
+                                                    <li ><a href="#">Dosya Galerileri</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="<?php echo base_url("urunler"); ?>">Ürünler</a></li>
+                                            <li><a href="<?php echo base_url("egitimler"); ?>">Eğitimler</a></li>
+                                            <li><a href="<?php echo base_url("markalar"); ?>">Markalar</a></li>
+                                            <li><a href="#">İletişim</a></li>
+
+                                        </ul>
+                                        <!-- main-menu end -->
+
+                                    </div>
+
+                                </div>
+                            </nav>
+                            <!-- navbar end -->
 
                         </div>
-                        
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-1" aria-controls="navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-
-                        <div class="collapse navbar-collapse" id="navbar-collapse-1">
-                            <!-- main-menu -->
-                            <ul class="navbar-nav ml-xl-auto">
-
-                                <li class="active"><a href="#" class="nav-link">Ana sayfa</a></li>
-                            
-                                <li class="nav-item dropdown ">
-                                    <a href="<?php echo base_url("hakkimizda"); ?>" class="nav-link dropdown-toggle" data-toggle="dropdown">Hakkımızda</a>
-                                    <ul class="dropdown-menu">
-                                        <li ><a href="<?php echo base_url("hakkimizda"); ?>">Hakkımızda</a></li>
-                                        <li ><a href="<?php echo base_url("portfolyo"); ?>">Portfolyo</a></li>
-                                        <li ><a href="#">Haberler</a></li>
-                                        <li ><a href="<?php echo base_url("referanslar"); ?>">Referanslar</a></li>
-                                        <li ><a href="<?php echo base_url("hizmetler"); ?>">Hizmetlerimiz</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown ">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Galeriler</a>
-                                    <ul class="dropdown-menu">
-                                        <li ><a href="#">Resim Galerileri</a></li>
-                                        <li ><a href="#">Video Galerileri</a></li>
-                                        <li ><a href="#">Dosya Galerileri</a></li>
-                                    </ul>
-                                </li>
-
-                                <li class="active"><a href="<?php echo base_url("urunler"); ?>" class="nav-link">Ürünler</a></li>
-                                <li class="active"><a href="<?php echo base_url("egitim"); ?>" class="nav-link">Eğitimler</a></li>
-                                <li class="active"><a href="<?php echo base_url("markalar"); ?>" class="nav-link">Markalar</a></li>
-                            </ul>
-                            <!-- main-menu end -->
-                        </div>
-                    </nav>
-                </div>
-                <!-- main-navigation end -->
-                </div> 
-                <!-- header-second end -->
+                        <!-- main-navigation end -->
+                    </div>
+                    <!-- header-second end -->
 
                 </div>
-                <div class="col-auto hidden-md-down pl-0 pl-md-1">
-                <!-- header dropdown buttons -->
-                <div class="header-dropdown-buttons">
-                    <a href="#" class="btn btn-sm btn-default">İletişim<i class="fa fa-envelope-o pl-1"></i></a>
-                </div>
-                <!-- header dropdown buttons end-->
             </div>
         </div>
-    </div>
-</header>
-<!-- header end -->
+
+    </header>
+    <!-- header end -->
 </div>
+<!-- header-container end -->
