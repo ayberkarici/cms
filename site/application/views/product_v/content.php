@@ -2,52 +2,49 @@
 <!-- ================ -->
 <section class="main-container padding-ver-clear">
     <div class="container pv-40">
+        <br>
+        <br>
+        <br>
         <div class="row">
         <div class="main col-lg-6">
-            <!-- Tab panes -->
-            <div class="tab-content space-bottom">
-                <div class="tab-pane active" id="pill-1">
-                    <?php 
-                        $image = get_product_cover_image($product->id);
-                        $image = ($image != "") ? "http://localhost/cms/site/uploads/product_v/".get_product_cover_image($product->id) : base_url("assets/images/page-about-1.jpg") ; 
-                    ?>
+            <div class="col-md-12  ">
+                <!-- slideshow start -->
+                <!-- ================ -->
+                <div class="slideshow">
+                    <!-- slider revolution start -->
+                    <!-- ================ -->
+                    <div class="slider-revolution-5-container">
+                        <div id="slider-banner-boxedwidth" class="slider-banner-boxedwidth rev_slider" data-version="5.0">
+                            <ul class="slides">
+                            
+                                <li class="text-center" data-transition="slidehorizontal" data-slotamount="default" data-masterspeed="default" data-title="">
+                                    <!-- main image -->
+                                    <img src="<?php echo base_url("uploads/$viewFolder/".get_product_cover_image($product->id)); ?>" alt="placeholder_img" data-bgposition="center top"  data-bgrepeat="no-repeat" data-bgfit="cover" class="rev-slidebg">
+                                </li>
+                                <?php 
+                                $product_images = get_sub_images($product->id);
+                                foreach($product_images as $subImage){ ?>
 
-                    <div class="shadow bordered">
-                        <div class="overlay-container">
-                            <img src='<?php echo $image; ?>' alt='<?php echo $product->url; ?>'>
-                            <a href='<?php echo $image; ?>' class="overlay-link popup-img" title='<?php echo $product->url; ?>'>
-                            <i class="fa fa-search"></i>
-                            </a>
+                                    <li class="text-center" data-transition="slidehorizontal" data-slotamount="default" data-masterspeed="default" data-title="">
+                                        <!-- main image -->
+                                        <img src="<?php echo base_url("uploads/$viewFolder/$subImage->img_url"); ?>" alt="placeholder_img" data-bgposition="center top"  data-bgrepeat="no-repeat" data-bgfit="cover" class="rev-slidebg">
+                                    </li>
+                                    
+                               <?php } ?>  
+                               
+                            </ul>
                         </div>
                     </div>
-
-                    <div class="space-bottom"></div>
-
-                    <div class="row grid-space-20">
-                        <?php 
-                        $subImages = get_sub_images($product->id);
-
-                        if($subImages != "") { 
-                            foreach ($subImages as $subImage) {
-                                
-                        ?>
-
-                        <div class="col-3">
-                            <div class="overlay-container">
-                                <img src="<?php echo base_url("uploads/$viewFolder/$subImage->img_url"); ?>" alt="">
-                                <a href="<?php echo base_url("uploads/$viewFolder/$subImage->img_url"); ?>" class="overlay-link small popup-img" title="<?php echo $subImage->img_url ?> ">
-                                    <i class="fa fa-search"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <?php }} ?> 
-
-                    </div>
-
+                    <!-- slider revolution end -->
                 </div>
+                <!-- slideshow end -->
             </div>
-                <!-- pills end -->
+            <!-- banner end -->
         </div>
+
+
+
+
         <!-- main start -->
         <!-- ================ -->
         <div class="main col-lg-6">

@@ -36,50 +36,61 @@
         <div class="separator-2"></div>
         <p><?php echo $course_item->description ?></p>
     </div>
-    <!-- main end -->
+    <br>
+    <div class="col-md-6">
 
-    <!-- sidebar start -->
-    <!-- ================ -->
-    <aside class="col-lg-7 col-xl-3 ml-xl-auto pv-40">
-        <div class="sidebar">
         <div class="block clearfix">
-            <h3 class="title"><?php echo $course_item->title ?></h3>
             <div class="separator-2"></div>
             <ul class="list margin-clear">
             <li><strong>Adı: </strong> <span class="text-right"><?php echo $course_item->title ?></span></li>
             <li><strong>Tarih: </strong> <span class="text-right"><?php echo getReadableDate($course_item->event_date) ?></span></li>
             </ul>
         </div>
-        <div class="block clearfix">
-            <h3 class="title">Başka bir eğitime bakın</h3>
-            <div class="separator-2"></div>
-            <div id="carousel-portfolio-sidebar" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <!-- randon item image -->
-                <li data-target="#carousel-portfolio-sidebar" class="active"></li>
-                
-            </ol>
+    </div>
+    
+    <!-- main end -->
 
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-
-                    <div class="carousel-item active">
-                        <div class="image-box shadow text-center mb-20">
-                            <div class="overlay-container">
-                            <img src="<?php echo base_url("uploads/courses_v/$rand_diff_item->img_url") ?>" alt="<?php echo $rand_diff_item->img_url ?>">
-                            <a href="<?php echo base_url("egitim-detay/$rand_diff_item->url"); ?>" class="overlay-link">
-                                <i class="fa fa-link"></i>
-                            </a>
+    <!-- sidebar start -->
+    <!-- ================ -->
+    <div class="row">
+        <div class="col-md-12">
+            <aside class="col-md-4 ml-xl-auto pv-40">
+                <div class="sidebar">
+        
+                <div class="block clearfix">
+                    <h3 class="title">Başka bir eğitime bakın</h3>
+                    <div class="separator-2"></div>
+                    <div id="carousel-portfolio-sidebar" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <!-- randon item image -->
+                        <li data-target="#carousel-portfolio-sidebar" class="active"></li>
+                        
+                    </ol>
+        
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+        
+                            <div class="carousel-item active">
+                                <div class="image-box shadow text-center mb-20">
+                                    <div class="overlay-container">
+                                    <img src="<?php echo base_url("uploads/courses_v/$rand_diff_item->img_url") ?>" alt="<?php echo $rand_diff_item->img_url ?>">
+                                    <a href="<?php echo base_url("egitim-detay/$rand_diff_item->url"); ?>" class="overlay-link">
+                                        <i class="fa fa-link"></i>
+                                    </a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+        
                     </div>
+                </div>
+                </div>
+                </div>
+            </aside>
 
-            </div>
         </div>
-        </div>
-        </div>
-    </aside>
+
+    </div>
     <!-- sidebar end -->
     </div>
 </div>

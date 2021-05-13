@@ -98,7 +98,11 @@
                             <div class="col-md-6 col-lg-6">
                                 <div class="body">
                                     <h3 class="title"><?php echo $rand_diff_item->title ?></h3>
-                                    <p class="small mb-10"><i class="icon-calendar"></i> <?php echo getReadableDate($rand_diff_item->finishedAt); ?> <i class="pl-10 icon-tag-1"></i> <?php get_category($rand_diff_item->category_id); ?></p>
+                                    <p class="small mb-10"><i class="icon-calendar"></i> <?php echo getReadableDate($rand_diff_item->finishedAt); ?> <i class="pl-10 icon-tag-1"></i> 
+                                    <?php 
+                                        echo (get_category($rand_diff_item->category_id)) ? get_category($rand_diff_item->category_id) : "" ;
+                                    ?>
+                                    </p>
                                     <div class="separator-2"></div>
                                     <p class="mb-10"><?php echo $rand_diff_item->description ?></p>
                                     <a href="<?php echo base_url("portfolyo-detay/$rand_diff_item->url"); ?>" class="btn btn-default btn-sm btn-hvr hvr-shutter-out-horizontal margin-clear">Görüntüle<i class="fa fa-arrow-right pl-10"></i></a>
