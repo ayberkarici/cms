@@ -19,9 +19,9 @@ class Portfolio_image_model extends CI_Model
         return $this->db->insert($this->tableName, $data);
     }
     
-    public function get($where = array())
+    public function get($where = array(), $order = "id ASC")
     {
-        return $this->db->where($where)->get($this->tableName)->row();
+        return $this->db->where($where)->order_by($order)->get($this->tableName)->row();
     }
     
     public function update($where = array(), $data = array())

@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-md-6 col-lg-8 col-xl-9">
                     <div class="body">
-                        <h3 class="title"><a href="portfolio-item.html"><?php echo $portfolio->title ?></a></h3>
+                        <h3 class="title"><a href="<?php echo base_url("portfolyo-detay/$portfolio->url"); ?>"><?php echo $portfolio->title ?></a></h3>
                         <p class="small mb-10"><i class="icon-calendar"></i> <?php echo getReadableDate($portfolio->finishedAt) ?> <i class="pl-10 icon-tag-1">
                         <?php
                             $category = get_category($portfolio->category_id); 

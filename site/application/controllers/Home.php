@@ -85,18 +85,22 @@ class Home  extends CI_Controller {
                 "url"       => $url
             )
         );
-        $viewData->rand_diff_item = $this->portfolio_model->get_random(
+        $viewData->rand_diff_item = $this->portfolio_model->get_all(
             array(
                 "isActive" => 1,
                 "id !="   => $viewData->portfolio_item->id
+            ), "rand()", array (
+                "count" => 1,
+                "start" => 0
             )
-        );
+            );
 
-        $viewData->portfolio_aside_images = $this->portfolio_image_model->get_all(
+        $viewData->portfolio_aside_image = $this->portfolio_image_model->get(
             array(
                 "isActive"  => 1,
-                "portfolio_id" => $viewData->rand_diff_item->id
-            )
+                "portfolio_id" => $viewData->rand_diff_item->id,
+                "isCover" => 1
+            ) 
         );
 
         $viewData->portfolio_item_image = $this->portfolio_image_model->get_all(

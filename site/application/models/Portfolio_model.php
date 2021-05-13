@@ -16,7 +16,12 @@ class Portfolio_model extends CI_Model
         if(!empty($limit))
             $this->db->limit($limit["count"], $limit["start"]);
 
-        return $this->db->get($this->tableName)->result();
+        if($limit['count'] == 1 && $limit['start'] == 0) {
+            $result = $this->db->get($this->tableName)->result();
+            return $result[0];
+        } else {
+            return $this->db->get($this->tableName)->result();
+        }
     }
 
     public function add($data = array())

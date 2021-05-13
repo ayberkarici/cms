@@ -1,7 +1,7 @@
 <div class="main-container">
     <div class="container">
         <h1 class="page-title">Ürünler</h1>
-        <p>İşte karşınızda ürünlerimiz</p>
+        <p>Catchy Word for Marketing</p>
         <div class="separator-2"></div>
         <div class="row">
             <?php foreach($products as $product) { ?>

@@ -15,13 +15,11 @@
     <!-- breadcrumb end -->
     <div class="container">
         <div class="row text-center">
-        <div class="col-md-2"></div>
             <div class="col-md-8 text-center col-md-offset-2 pv-20">
                 <h3 class="title logo-font object-non-visible" data-animation-effect="fadeIn" data-effect-delay="100"><?php echo $settings->company_name ?></h3>
                 <div class="separator object-non-visible mt-10" data-animation-effect="fadeIn" data-effect-delay="100"></div>
                 <p class="text-center object-non-visible" data-animation-effect="fadeIn" data-effect-delay="100"><?php echo character_limiter(strip_tags($settings->about_us), 100); ?></p>
             </div>
-        <div class="col-md-2"></div>
         </div>
     </div>
 </div>
@@ -68,13 +66,13 @@
     
                 <div class="card">
                   <div class="card-header" role="tab" id="headingOne">
-                    <h4 class="mb-0">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <h4 class="mb-1">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                         <i class="fa fa-leaf pr-10"></i>Vizyon
                       </a>
                     </h4>
                   </div>
-                  <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                  <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
                     <div class="card-block">
                       <?php echo strip_tags($settings->vision); ?>
                     </div>
