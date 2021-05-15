@@ -25,9 +25,9 @@
                                 $product_images = get_sub_images($product->id);
                                 foreach($product_images as $subImage){ ?>
 
-                                    <li class="text-center" data-transition="slidehorizontal" data-slotamount="default" data-masterspeed="default" data-title="">
+                                    <li class="text-center " data-transition="slidehorizontal" data-slotamount="default" data-masterspeed="default" data-title="">
                                         <!-- main image -->
-                                        <img src="<?php echo base_url("uploads/$viewFolder/$subImage->img_url"); ?>" alt="placeholder_img" data-bgposition="center top"  data-bgrepeat="no-repeat" data-bgfit="cover" class="rev-slidebg">
+                                        <img src="<?php echo base_url("uploads/$viewFolder/$subImage->img_url"); ?>" alt="placeholder_img" data-bgposition="center top"  data-bgrepeat="no-repeat" data-bgfit="cover" class="rev-slidebg ">
                                     </li>
                                     
                                <?php } ?>  

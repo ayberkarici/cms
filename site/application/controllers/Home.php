@@ -214,5 +214,114 @@ class Home  extends CI_Controller {
         $this->load->view($viewData->viewFolder, $viewData);
 
     }
+
+    public function contact() {
+        $viewData = new stdClass();
+
+        $viewData->viewFolder = "contact_v";
+        $this->load->helper("captcha");
+
+        $config = array(
+            "word"          => '',
+            "img_path"      => "captcha/",
+            "img_url"       => base_url("captcha"),
+            "font_path"     => base_url("fonts/corbel.ttf"),
+            "img_width"     => 150,
+            "img_height"    => 50,
+            "expiration"    => 7200,
+            "word_length"   => 5,
+            "font_size"     => 20,
+            "image_id"      => "captcha_img",
+            "pool"          => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+            "colors"        => array(
+                "background"=> array(56,255,45),
+                "border"    => array(255,255,255),
+                "text"      => array(0,0,0),
+                "grid"      => array(255,40,40)
+            )
+        );
+
+        $captcha = create_captcha($config);
+        $viewData->captcha = $captcha;
+
+        $this->session->set_userdata("captcha", $viewData->captcha["word"]);
+
+        $this->load->view($viewData->viewFolder, $viewData); 
+    }
+
+    public function send_contact_message() {
+        $this->load->library("form_validation");    
+        
+        $this->form_validation->set_rules("name", "Ad", "trim|required");
+        $this->form_validation->set_rules("email", "E-posta", "trim|required|valid_email");
+        $this->form_validation->set_rules("subject", "Konu", "trim|required");
+        $this->form_validation->set_rules("message", "Mesaj", "trim|required");
+        $this->form_validation->set_rules("captcha", "Doğrulama Kodu", "trim|required");
+
+        if($this->form_validation->run() === FALSE) {
+
+            // TODO Alert.. 
+            redirect(base_url("iletisim"));
+            
+        } else {
+            
+            if($this->session->userdata("captcha") == $this->input->post("captcha")) {
+
+                $name = $this->input->post("name");
+                $email = $this->input->post("email");
+                $subject = $this->input->post("subject");
+                $message = $this->input->post("message");
+
+                $email_message = "<b>{$name}</b> isimli ziyaretçi mesaj bıraktı: <br> <b>Mesaj</b> : {$message} <br> <b>E-posta</b> : {$email}";
+
+                if(send_email("", "Site iletişim mesajı | $subject", $email_message)) {
+                    echo "işlem başarılı"; 
+                } else {
+                    echo "işlem başarısız";
+                }
+
+            } else {
+
+                echo "Captcha yanlış";
+                
+            }
+            
+        }
+    }
+
+    public function make_me_member() {
+        $this->load->library("form_validation");
+
+        $this->form_validation->set_rules("subscribe_email", "Abone ol", "required|trim|valid_email");
+
+        if($this->form_validation->run() == FALSE) {
+            
+            // TODO Alert
+
+        } else {
+
+            $this->load->model("member_model");
+
+            $insert = $this->member_model->add(
+                array(
+                    "isActive"  => 1,
+                    "email"     => $this->input->post("subscribe_email"),
+                    "ip_address"=> $this->input->ip_address(),
+                    "createdAt" => date("Y-m-d H-i-s")
+                )
+            );
+
+            if($instert){
+                // TODO
+
+            } else {
+                // TODO
+
+            }
+        }
+
+        redirect(base_url('iletisim'));
+
+    }
 }
 
