@@ -75,7 +75,7 @@
                                                 <ul class="dropdown-menu">
                                                     <li ><a href="<?php echo base_url("hakkimizda"); ?>">Hakkımızda</a></li>
                                                     <li ><a href="<?php echo base_url("portfolyo"); ?>">Portfolyo</a></li>
-                                                    <li ><a href="#">Haberler</a></li>
+                                                    <li ><a href="<?php echo base_url("haberler"); ?>">Haberler</a></li>
                                                     <li ><a href="<?php echo base_url("referanslar"); ?>">Referanslar</a></li>
                                                     <li ><a href="<?php echo base_url("hizmetler"); ?>">Hizmetlerimiz</a></li>
                                                 </ul>

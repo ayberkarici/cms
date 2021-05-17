@@ -323,5 +323,76 @@ class Home  extends CI_Controller {
         redirect(base_url('iletisim'));
 
     }
+
+    public function news_list() {
+        $this->load->helper("tools");
+        $this->load->model("news_model");
+
+        $viewData = new stdClass();
+        
+        $viewData->viewFolder = "news_list_v";
+
+        $viewData->news_list = $this->news_model->get_all(
+            array(
+                "isActive"  => 1
+            ), "rank DESC"
+        );
+
+		$this->load->view($viewData->viewFolder, $viewData);
+    }
+
+    public function news($url) {
+
+        if($url != "") {
+            $this->load->helper("tools");
+            $this->load->model("news_model");
+    
+            $viewData = new stdClass();
+            
+            $viewData->viewFolder = "news_v";
+    
+            $news = $this->news_model->get(
+                array(
+                    "isActive"  => 1,
+                    "url"       => $url
+                )
+            );
+
+            if($news) {
+                $viewData->news = $news;
+                
+                $viewData->recent_news = $this->news_model->get_all(
+                    array(
+                        "id !="     => $news->id,
+                        "isActive"  => 1
+                    ) , "rank DESC"
+                );
+
+                /****************** Görüntülenme  ******************/
+    
+                $view_count = $news->view_count + 1;
+                $this->news_model->update(
+                    array(
+                        "id" => $news->id
+                    ),
+                    array(
+                        "view_count" => $view_count
+                    )
+                );
+
+                $viewData->news->view_count = $view_count;
+
+                $this->load->view($viewData->viewFolder, $viewData);
+                
+            } else {
+                // TODO Alert...
+            }
+            
+            
+        } else {
+            // TODO Alert...
+            
+        }
+    }
 }
 
