@@ -1,5 +1,5 @@
 <?php $settings = get_settings(); ?>
-"
+
 <!-- main-container start -->
 <!-- ================ -->
 <section class="main-container">
@@ -61,10 +61,12 @@
             -->
             <div class="link pull-right">
             <ul class="social-links circle small colored clearfix margin-clear text-right animated-effect-1">
-                <li class="twitter"><a target="_blank" href="<?php echo $settings->twitter ?>"><i class="fa fa-twitter"></i></a></li>
-                <li class="instagram"><a target="_blank" href="<?php echo $settings->instagram ?>"><i class="fa fa-instagram"></i></a></li>
-                <li class="facebook"><a target="_blank" href="<?php echo $settings->facebook ?>"><i class="fa fa-facebook"></i></a></li>
+                <li class="twitter"><a class="share-button"  href="https://www.twitter.com/intent/tweet?text=<?php echo $news->title ?>?url=<?php echo base_url("haber/$news->url"); ?> Haberi"><i class=" fa fa-twitter"></i></a></li>
+                <li class="facebook"><a class="share-button"  href="https://www.facebook.com/sharer.php?u=<?php echo base_url("haber/$news->url"); ?>?t=<?php echo $news->title ?> Haberi"><i class=" fa fa-facebook"></i></a></li>
             </ul>
+            </div>
+            <div class="pull-right " style="display: inline-block; margin-right: 1rem; height: fit-content; vertical-align:center; ">
+            Bu muhteşem gönderiyi sosyal medyada <b>paylaş: </b>
             </div>
         </footer>
         </article>

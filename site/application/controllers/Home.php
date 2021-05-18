@@ -350,6 +350,7 @@ class Home  extends CI_Controller {
             $viewData = new stdClass();
             
             $viewData->viewFolder = "news_v";
+            $viewData->opengraph = true;
     
             $news = $this->news_model->get(
                 array(
