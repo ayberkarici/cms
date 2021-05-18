@@ -21,8 +21,6 @@
 <!-- Contact form -->
 <script src="<?php echo base_url("assets") ?>/plugins/jquery.validate.js"></script>
 <!-- Google Maps javascript -->
-<script type="text/javascript" src="<?php echo base_url("assets") ?>/https://maps.googleapis.com/maps/api/js?v=3.exp&amp;key=AIzaSyDwdtinqG61Obho_ryUMgGxfWpZ8lvkY10"></script>
-<script type="text/javascript" src="<?php echo base_url("assets") ?>/js/google.map.config.js"></script>
 <!-- Owl carousel javascript -->
 <script type="text/javascript" src="<?php echo base_url("assets") ?>/plugins/owlcarousel2/owl.carousel.min.js"></script>
 <!-- Pace javascript -->
@@ -36,3 +34,5 @@
 <script type="text/javascript" src="<?php echo base_url("assets"); ?>/plugins/rs-plugin-5/js/extensions/revolution.extension.navigation.min.js"></script>
 
 <script type="text/javascript" src="<?php echo base_url("assets") ?>/js/custom.js"></script>
+
+

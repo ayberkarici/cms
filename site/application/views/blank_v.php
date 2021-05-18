@@ -7,7 +7,7 @@
 <head>
 	<?php $this->load->view("includes/head"); ?>
 </head>
-<body class=" transparent-header front-page page-loader-5">
+<body class="front-page  page-loader-5">
 
 	<!-- scrollToTop -->
 	<!-- ================ -->
