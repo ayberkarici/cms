@@ -77,21 +77,15 @@ class Brands extends CI_Controller {
 
 				$file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)).".".pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
 
-				$config['allowed_types'] = "jpg|jpeg|png";
-				$config['upload_path'] = "uploads/$this->viewFolder/";
-				$config['file_name'] = $file_name;
-		
-				$this->load->library("upload", $config);
-		
-				$upload = $this->upload->do_upload("img_url");
-		
-				if($upload) {
-					$uploaded_file = $this->upload->data("file_name"); 
+				$image_150x107 = upload_picture($_FILES['img_url']['tmp_name'], "uploads/$this->viewFolder", 150, 107, $file_name);
+				$image_555x343 = upload_picture($_FILES['img_url']['tmp_name'], "uploads/$this->viewFolder", 555, 343, $file_name);
+				
+				if($image_150x107 && $image_555x343) {
 
 					$insert = $this->brand_model->add(
 						array(
 							"title"			=> $this->input->post("title"),
-							"img_url"		=> $uploaded_file,
+							"img_url"		=> $file_name,
 							"rank"			=> 0,
 							"isActive"		=> 1,
 							"createdAt"		=> date("Y-m-d H:i:s")
@@ -181,26 +175,13 @@ class Brands extends CI_Controller {
 			if($_FILES['img_url']['name'] !== "") {
 				$file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)).".".pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
 
-				$config['allowed_types'] = "jpg|jpeg|png";
-				$config['upload_path'] = "uploads/$this->viewFolder/";
-				$config['file_name'] = $file_name;
-		
-				$this->load->library("upload", $config);
-		
-				$upload = $this->upload->do_upload("img_url");
-		
-				if($upload) {
-					$old_image = $this->brand_model->get(
-						array(
-							"id" => $id
-						)
-					);
-
-					$uploaded_file = $this->upload->data("file_name"); 
-					
+				$image_150x107 = upload_picture($_FILES['img_url']['tmp_name'], "uploads/$this->viewFolder", 150, 107, $file_name);
+				$image_555x343 = upload_picture($_FILES['img_url']['tmp_name'], "uploads/$this->viewFolder", 555, 343, $file_name);
+				
+				if($image_150x107 && $image_555x343) {				
 					$data = array(
 						"title"			=> $this->input->post("title"),
-						"img_url"		=> $uploaded_file,
+						"img_url"		=> $file_name,
 					);
 				} else {
 					$alert = array(
@@ -225,10 +206,6 @@ class Brands extends CI_Controller {
 			$update = $this->brand_model->update(array("id" => $id), $data);
 			
 			if($update) {
-				if($_FILES['img_url']['name'] !== "") {
-					unlink("uploads/$this->viewFolder/$old_image->img_url");
-				};
-
 				$alert = array(
 					'title' => "İşlem Başarılı!",
 					'type' 	=> "success",

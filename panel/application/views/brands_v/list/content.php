@@ -20,7 +20,7 @@
             <th class="order"><i class="fa fa-reorder"></i></th>
             <th class="order">#id</th>
             <th>Başlık</th>
-            <th>Görsel</th>
+            <th width="134">Görsel</th>
             <th class="order-status">Durumu</th>
             <th class="w150">İşlem</th>
         </thead>
@@ -32,8 +32,9 @@
                 <td><?php echo $item->title; ?></td>
                 <td>
                     <img 
-                        width="100"
-                        src="<?php echo base_url("uploads/$viewFolder/$item->img_url"); ?>" 
+                        width="90"
+                        class="img-responsive img-rounded"
+                        src="<?php echo get_picture($viewFolder, $item->img_url, "150x107"); ?>" 
                         alt="" 
                         srcset="">
                 </td>

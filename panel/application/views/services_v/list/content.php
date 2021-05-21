@@ -21,7 +21,7 @@
             <th class="order">#id</th>
             <th>Başlık</th>
             <th class="w134">Url</th>
-            <th>Görsel</th>
+            <th width="134">Görsel</th>
             <th class="order-status">Durumu</th>
             <th class="w150">İşlem</th>
         </thead>
