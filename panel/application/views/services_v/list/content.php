@@ -34,8 +34,9 @@
                 <td><?php echo $item->url; ?></td>
                 <td>
                     <img 
-                        width="100"
-                        src="<?php echo base_url("uploads/$viewFolder/$item->img_url"); ?>" 
+                        width="90"
+                        class="img-responsive img-rounded"
+                        src="<?php echo get_picture($viewFolder, $item->img_url, "150x107"); ?>" 
                         alt="" 
                         srcset="">
                 </td>

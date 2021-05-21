@@ -77,10 +77,16 @@ class Services extends CI_Controller {
 				$config['allowed_types'] = "jpg|jpeg|png";
 				$config['upload_path'] = "uploads/$this->viewFolder/";
 				$config['file_name'] = $file_name;
-		
+				
+				$image_150x107 = upload_picture($_FILES['img_url']['tmp_name'], "uploads/$this->viewFolder", 150, 107, $file_name);
+				
+
 				$this->load->library("upload", $config);
 		
 				$upload = $this->upload->do_upload("img_url");
+
+
+
 		
 				if($upload) {
 					$uploaded_file = $this->upload->data("file_name"); 
