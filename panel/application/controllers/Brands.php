@@ -77,10 +77,9 @@ class Brands extends CI_Controller {
 
 				$file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)).".".pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
 
-				$image_150x107 = upload_picture($_FILES['img_url']['tmp_name'], "uploads/$this->viewFolder", 150, 107, $file_name);
-				$image_555x343 = upload_picture($_FILES['img_url']['tmp_name'], "uploads/$this->viewFolder", 555, 343, $file_name);
+				$image_350x216 = upload_picture($_FILES['img_url']['tmp_name'], "uploads/$this->viewFolder", 350, 216, $file_name);
 				
-				if($image_150x107 && $image_555x343) {
+				if($image_350x216) {
 
 					$insert = $this->brand_model->add(
 						array(
@@ -175,10 +174,9 @@ class Brands extends CI_Controller {
 			if($_FILES['img_url']['name'] !== "") {
 				$file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)).".".pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
 
-				$image_150x107 = upload_picture($_FILES['img_url']['tmp_name'], "uploads/$this->viewFolder", 150, 107, $file_name);
-				$image_555x343 = upload_picture($_FILES['img_url']['tmp_name'], "uploads/$this->viewFolder", 555, 343, $file_name);
+				$image_350x216 = upload_picture($_FILES['img_url']['tmp_name'], "uploads/$this->viewFolder", 350, 216, $file_name);
 				
-				if($image_150x107 && $image_555x343) {				
+				if($image_350x216) {			
 					$data = array(
 						"title"			=> $this->input->post("title"),
 						"img_url"		=> $file_name,

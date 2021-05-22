@@ -19,7 +19,7 @@
                     </div>
                         <div class="row image_upload_container">
                             <div class="col-md-3 text-center" >
-                            <img src="<?php echo get_picture($viewFolder, $item->img_url, "555x343"); ?>"  width="330" class="img-responsive img-thumbnail ">
+                            <img src="<?php echo get_picture($viewFolder, $item->img_url, "350x216"); ?>"  width="330" class="img-responsive img-thumbnail ">
                                 <br>
                                 <small class=" text-purple text-lowercase ">(Mevcut mükemmel görseliniz)</small>
                             </div>
