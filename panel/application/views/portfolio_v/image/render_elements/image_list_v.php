@@ -10,7 +10,7 @@
         <thead>
             <th class="order"><i class="fa fa-reorder"></i></th>
             <th class="order">#id</th>
-            <th>Görsel</th>
+            <th width = "184">Görsel</th>
             <th>Resim Adı</th>
             <th class="order-status">Durumu</th>
             <th class="order-status">Kapak</th>
@@ -23,8 +23,13 @@
                 <tr id="ord-<?php echo $image->id; ?>">
                     <td class="order"><i class="fa fa-reorder"></i></td>
                     <td class="w100 text-center order ">#<?php echo $image->id; ?></td>
-                    <td class="w100 text-center">
-                        <img width="30" src="<?php echo base_url("uploads/{$viewFolder}/$image->img_url"); ?>" alt="<?php echo $image->img_url; ?>" class="img-responsive">
+                    <td>
+                        <img 
+                            width="150"
+                            class="img-responsive img-rounded"
+                            src="<?php echo get_picture($viewFolder, $image->img_url, "255x157"); ?>" 
+                            alt="" 
+                            srcset="">
                     </td>
                     <td><?php echo $image->img_url; ?></td>
                     <td class="w100 text-center order-status">
