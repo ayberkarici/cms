@@ -23,7 +23,7 @@
             <th class="w134">Url</th>
             <!--<th>Açıklama</th>-->
             <th>Haber Türü</th>
-            <th>Görsel</th>
+            <th width = "184">Görsel</th>
             <th class="order-status">Durumu</th>
             <th class="w150">İşlem</th>
         </thead>
@@ -35,15 +35,16 @@
                 <td><?php echo $item->title; ?></td>
                 <td><?php echo $item->url; ?></td>
                 <!--<td><?php //echo $item->description; ?></td>-->
-                <td class="text-center"><?php echo ($item->news_type == "video") ? "Video": "Görsel"; ?></td>
-                <td>
+                <td class="text-center"><?php echo ($item->news_type == "video") ? "Video": "Resim"; ?></td>
+                <td class="text-center">
                     <?php if($item->news_type == "image") { ?>
+                        
                         <img 
-                            width="100"
-                            src="<?php echo base_url("uploads/$viewFolder/$item->img_url"); ?>" 
+                            width="150"
+                            class="img-responsive img-rounded"
+                            src="<?php echo get_picture($viewFolder, $item->img_url, "513x289"); ?>" 
                             alt="" 
-                            srcset=""
-                        >
+                            srcset="">
 
                     <?php } else if ($item->news_type == "video") { ?>
                         <iframe 

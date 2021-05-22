@@ -80,23 +80,17 @@ class News extends CI_Controller {
 			if($news_type == "image") {
 				$file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)).".".pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
 
-				$config['allowed_types'] = "jpg|jpeg|png";
-				$config['upload_path'] = "uploads/$this->viewFolder/";
-				$config['file_name'] = $file_name;
-		
-				$this->load->library("upload", $config);
-		
-				$upload = $this->upload->do_upload("img_url");
-		
-				if($upload) {
-					$uploaded_file = $this->upload->data("file_name"); 
+				$image_513x289 = upload_picture($_FILES['img_url']['tmp_name'], "uploads/$this->viewFolder", 513, 289, $file_name);
+				$image_730x411 = upload_picture($_FILES['img_url']['tmp_name'], "uploads/$this->viewFolder", 730, 411, $file_name);
+				
+				if($image_513x289 && $image_730x411) {
 					
 					$data = array(
 						"title"			=> $this->input->post("title"),
 						"description"	=> $this->input->post("description"),
 						"url"			=> convertToSEO($this->input->post("title")),
 						"news_type"		=> $news_type,
-						"img_url"		=> $uploaded_file,
+						"img_url"		=> $file_name,
 						"video_url"		=> "#",
 						"rank"			=> 0,
 						"isActive"		=> 1,
@@ -208,31 +202,20 @@ class News extends CI_Controller {
 			// Upload süreci
 			if($news_type == "image") {
 				if($_FILES['img_url']['name'] !== "") {
-					$old_image = $this->news_model->get(
-						array(
-							"id" => $id
-						)
-					);
 
 					$file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)).".".pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
 	
-					$config['allowed_types'] = "jpg|jpeg|png";
-					$config['upload_path'] = "uploads/$this->viewFolder/";
-					$config['file_name'] = $file_name;
-			
-					$this->load->library("upload", $config);
-			
-					$upload = $this->upload->do_upload("img_url");
-			
-					if($upload) {
-						$uploaded_file = $this->upload->data("file_name"); 
+					$image_513x289 = upload_picture($_FILES['img_url']['tmp_name'], "uploads/$this->viewFolder", 513, 289, $file_name);
+					$image_730x411 = upload_picture($_FILES['img_url']['tmp_name'], "uploads/$this->viewFolder", 730, 411, $file_name);
+				
+					if($image_513x289 && $image_730x411) {
 						
 						$data = array(
 							"title"			=> $this->input->post("title"),
 							"description"	=> $this->input->post("description"),
 							"url"			=> convertToSEO($this->input->post("title")),
 							"news_type"		=> $news_type,
-							"img_url"		=> $uploaded_file,
+							"img_url"		=> $file_name,
 							"video_url"		=> "#",
 							"changedAt"		=> date("Y-m-d H:i:s")
 						);

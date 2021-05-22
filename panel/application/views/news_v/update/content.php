@@ -72,7 +72,7 @@
 
                         <div class="row image_upload_container form-group" style="display: <?php echo ($item->news_type == "image") ? "block" : "none";  ?>;">
                             <div class="col-md-3 text-center" style="display: <?php echo ($item->news_type == "image") ? "block" : "none";  ?>;">
-                                <img src="<?php echo base_url("uploads/$viewFolder/$item->img_url") ?>"  width="330" class="img-responsive img-thumbnail">
+                                <img src="<?php echo get_picture($viewFolder, $item->img_url, "513x289"); ?>"  width="330" class="img-responsive img-thumbnail ">
                                 <br>
                                 <small class=" text-purple text-lowercase ">(Mevcut mükemmel görseliniz)</small>
                             </div>
