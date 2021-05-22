@@ -33,7 +33,7 @@
                             <input type="file" class="form-control" name="img_url" >
                             <br>
                             <div class="col-md-4 text-center">
-                            <img src="<?php echo get_picture($viewFolder, $item->img_url, "555x343"); ?>"  width="330" class="img-responsive img-thumbnail ">
+                            <img src="<?php echo get_picture($viewFolder, $item->img_url, "255x157"); ?>"  width="330" class="img-responsive img-thumbnail ">
                                 <br>
                                 <small class=" text-purple text-lowercase ">(Mevcut mükemmel görseliniz)</small>
                             </div>

@@ -21,7 +21,7 @@
             <th class="order">#id</th>
             <th>Başlık</th>
             <th class="w200">Tarih</th>
-            <th width="134">Görsel</th>
+            <th width = "184">Görsel</th>
             <th class="order-status">Durumu</th>
             <th class="w150">İşlem</th>
         </thead>
@@ -34,9 +34,9 @@
                 <td class="order-status"><?php echo getReadableDate($item->event_date); ?></td>
                 <td>
                     <img 
-                        width="90"
+                        width="150"
                         class="img-responsive img-rounded"
-                        src="<?php echo get_picture($viewFolder, $item->img_url, "150x107"); ?>" 
+                        src="<?php echo get_picture($viewFolder, $item->img_url, "255x157"); ?>" 
                         alt="" 
                         srcset="">
                 </td>

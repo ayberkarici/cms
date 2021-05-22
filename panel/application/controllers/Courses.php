@@ -77,10 +77,10 @@ class Courses extends CI_Controller {
 
 				$file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)).".".pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
 
-				$image_150x107 = upload_picture($_FILES['img_url']['tmp_name'], "uploads/$this->viewFolder", 150, 107, $file_name);
-				$image_555x343 = upload_picture($_FILES['img_url']['tmp_name'], "uploads/$this->viewFolder", 555, 343, $file_name);
+				$image_255x157 = upload_picture($_FILES['img_url']['tmp_name'], "uploads/$this->viewFolder", 255, 157, $file_name);
+				$image_1140x705 = upload_picture($_FILES['img_url']['tmp_name'], "uploads/$this->viewFolder", 1140, 705, $file_name);
 				
-				if($image_150x107 && $image_555x343) {
+				if($image_255x157 && $image_1140x705) {
 
 					$insert = $this->course_model->add(
 						array(
@@ -179,10 +179,10 @@ class Courses extends CI_Controller {
 			if($_FILES['img_url']['name'] !== "") {
 				$file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)).".".pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
 
-				$image_150x107 = upload_picture($_FILES['img_url']['tmp_name'], "uploads/$this->viewFolder", 150, 107, $file_name);
-				$image_555x343 = upload_picture($_FILES['img_url']['tmp_name'], "uploads/$this->viewFolder", 555, 343, $file_name);
+				$image_255x157 = upload_picture($_FILES['img_url']['tmp_name'], "uploads/$this->viewFolder", 255, 157, $file_name);
+				$image_1140x705 = upload_picture($_FILES['img_url']['tmp_name'], "uploads/$this->viewFolder", 1140, 705, $file_name);
 				
-				if($image_150x107 && $image_555x343) {
+				if($image_255x157 && $image_1140x705) {
 
 					$data = array(
 						"title"			=> $this->input->post("title"),
