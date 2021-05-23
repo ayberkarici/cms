@@ -7,7 +7,7 @@ $page_title = $this->session->userdata("section_title");
 <nav id="app-navbar" class="navbar navbar-inverse navbar-fixed-top primary">
   
   <!-- navbar header -->
-  <div class="navbar-header">
+  <div class="navbar-header pb-2">
     <button type="button" id="menubar-toggle-btn" class="navbar-toggle visible-xs-inline-block navbar-toggle-left hamburger hamburger--collapse js-hamburger">
       <span class="sr-only">Toggle navigation</span>
       <span class="hamburger-box"><span class="hamburger-inner"></span></span>
@@ -26,10 +26,7 @@ $page_title = $this->session->userdata("section_title");
     <a href="<?php echo base_url(); ?>" class="navbar-brand">
       <span class="brand-icon">
         <?php if($settings->logo != "default"){ ?>
-          <img width="60" 
-                src="<?php echo base_url("uploads/settings_v/$settings->logo"); ?>" 
-                alt="<?php echo $settings->logo ?>" 
-                class="img-responsive">
+          <img src="<?php echo get_picture("settings_v", $settings->logo, "150x35"); ?>"  width="40" class="img-responsive">
         <?php } else { ?>
           <img width="40" 
                 src="<?php echo base_url("assets/assets/images/index/infinity-logo.png"); ?>" 
