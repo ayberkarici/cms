@@ -165,3 +165,31 @@ function get_picture($path = "", $picture = "", $resolution = "50x50"){
     return $picture;
 
 }
+
+function get_slider_velocity($expression) {
+
+    $velocity = array(
+        "cok-yavas" => 1500,
+        "yavas" => 1250,
+        "orta" => 1000,
+        "hizli" => 750,
+        "cok-hizli" => 500,
+    );
+
+    return $velocity[$expression];
+    
+}
+
+function get_slider_velocity_name($velocity) {
+
+    $expression = array(
+        1500 => "cok-yavas",
+        1250 => "yavas",
+        1000 => "orta",
+        750 => "hizli",
+        500 => "cok-hizli",
+    );
+
+    return $expression[$velocity];
+    
+}

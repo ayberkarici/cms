@@ -8,11 +8,11 @@
 
                 <?php foreach ($slides as $slide ) {?> 
                     <li 
-                        data-transition="curtain-1" 
+                        data-transition="<?php echo $slide->animation_type ?>"
                         data-slotamount="default" 
-                        data-masterspeed="default" 
+                        data-masterspeed="<?php echo $slide->animation_time ?>" 
                         data-title="<?php echo $slide->title ?>">
-
+ 
                         <!-- main image -->
                         <img src="<?php echo get_picture("slides_v", $slide->img_url, "1920x650");?>" alt="<?php echo $slide->img_url ?>" data-bgposition="center top"  data-bgrepeat="no-repeat" data-bgfit="cover"  class="rev-slidebg">
 

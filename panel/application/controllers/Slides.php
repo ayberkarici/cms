@@ -91,6 +91,8 @@ class Slides extends CI_Controller {
 							"allowButton"		=> ($this->input->post("allowButton") == "on") ? 1:0 ,
 							"button_caption"	=> $this->input->post("button_caption"),
 							"button_url"		=> $this->input->post("button_url"),
+							"animation_type"	=> $this->input->post("animation_type"),
+							"animation_time"	=> get_slider_velocity($this->input->post("animation_time")),
 							"rank"				=> 0,
 							"isActive"			=> 1,
 							"createdAt"			=> date("Y-m-d H:i:s")
@@ -197,6 +199,8 @@ class Slides extends CI_Controller {
 						"allowButton"		=> ($this->input->post("allowButton") == "on") ? 1:0 ,
 						"button_caption"	=> $this->input->post("button_caption"),
 						"button_url"		=> $this->input->post("button_url"),
+						"animation_type"	=> $this->input->post("animation_type"),
+						"animation_time"	=> get_slider_velocity($this->input->post("animation_time")),
 					);
 				} else {
 					$alert = array(
@@ -219,6 +223,8 @@ class Slides extends CI_Controller {
 					"allowButton"		=> ($this->input->post("allowButton") == "on") ? 1:0 ,
 					"button_caption"	=> $this->input->post("button_caption"),
 					"button_url"		=> $this->input->post("button_url"),
+					"animation_type"	=> $this->input->post("animation_type"),
+					"animation_time"	=> get_slider_velocity($this->input->post("animation_time"))
 				);
 			}
 
