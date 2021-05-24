@@ -88,6 +88,10 @@ $(document).ready(function () {
 
     })
 
+    $(".button_usage_btn").change(function () {
+        $(".button-information-container").slideToggle();
+    })
+
     $(".content-container, .image_list_container").on("sortupdate", ".sortable" , function(event, ui){
 
         const $data = $(this).sortable("serialize");

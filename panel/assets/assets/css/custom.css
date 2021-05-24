@@ -69,3 +69,10 @@ th{
 .video_url_container {
     display: none;
 }
+
+.button-information-container {
+    border: 1px solid #ccc ;
+    padding: 20px;
+    border-radius: 5px;
+    display: none;
+}

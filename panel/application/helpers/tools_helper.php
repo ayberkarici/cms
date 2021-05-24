@@ -112,6 +112,10 @@ function upload_picture($file, $uploadPath, $width, $height, $name){
     $t = &get_instance();
     $t->load->library("simpleimagelib");
 
+    if(!is_dir("{$uploadPath}")){
+        mkdir("{$uploadPath}");
+        chmod ("{$uploadPath}", 0644); 
+    }
 
     if(!is_dir("{$uploadPath}/{$width}x{$height}")){
         mkdir("{$uploadPath}/{$width}x{$height}");
@@ -125,7 +129,7 @@ function upload_picture($file, $uploadPath, $width, $height, $name){
         $simpleImage
             ->fromFile($file)
             ->thumbnail($width,$height,'center')
-            ->toFile("{$uploadPath}/{$width}x{$height}/$name", 'image/png');
+            ->toFile("{$uploadPath}/{$width}x{$height}/$name", null, 75);
 
     } catch(Exception $err) {
         $error =  $err->getMessage();
