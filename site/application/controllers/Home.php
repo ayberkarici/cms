@@ -10,9 +10,20 @@ class Home  extends CI_Controller {
         
     }
     public function index() {
+        $this->load->helper("tools");
+
+        $this->load->model("slide_model");
+
+        $slides = $this->slide_model->get_all(
+            array(
+                "isActive" => 1
+            ), "rank ASC"
+        );
+
         // Ana sayfa
         $viewData = new stdClass();
         $viewData->viewFolder = "home_v";
+        $viewData->slides = $slides; 
 
         $this->load->view($viewData->viewFolder, $viewData);
     }
